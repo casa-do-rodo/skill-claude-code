@@ -52,11 +52,13 @@ Skills live in `.agents/skills/`. Installed via `npx skills add <source>/<repo>`
 |---|---|---|
 | `supabase` | supabase/agent-skills | Qualquer task com Supabase: DB, Auth, RLS, Edge Functions, pgvector, CLI |
 | `supabase-postgres-best-practices` | supabase/agent-skills | Queries, schema design, otimização Postgres (30 regras) |
+| `supabase-schema-testing` | custom (stack) | Antes de aplicar qualquer migration, criar RLS policies ou configurar pgvector. Adapta RED-GREEN-REFACTOR para Supabase. |
 
 ### n8n
 
 | Skill | Source | Quando ativa |
 |---|---|---|
+| `n8n-workflow-testing` | custom (stack) | Antes de ativar qualquer workflow, ao validar AI agents ou debug de outputs. Adapta RED-GREEN-REFACTOR para n8n. |
 | `n8n-workflow-patterns` | czlonkowski/n8n-skills | Projetando workflows: AI agents, webhooks, database sync, batch |
 | `n8n-mcp-tools-expert` | czlonkowski/n8n-skills | Usando o MCP do n8n — consultar ANTES de qualquer tool call |
 | `n8n-node-configuration` | czlonkowski/n8n-skills | Configurando nodes com operações dependentes entre campos |
