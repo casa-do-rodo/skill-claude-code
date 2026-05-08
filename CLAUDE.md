@@ -93,10 +93,12 @@ Skills live in `.agents/skills/`. Installed via `npx skills add <source>/<repo>`
 
 ## Skills Pipeline
 
+**Override da skill `brainstorming`:** a skill diz "do NOT invoke frontend-design — the ONLY skill after brainstorming is writing-plans." Esta instrução é overridden para projetos visuais (landing pages, dashboards, UI): após aprovação do spec e antes de invocar `writing-plans`, invocar `frontend-design` para refinar a direção visual. Esta instrução de usuário tem prioridade máxima sobre a skill.
+
 ```
 using-superpowers (meta — governa tudo)
         ↓
-brainstorming → [frontend-design] → writing-plans
+brainstorming → [frontend-design — projetos visuais] → writing-plans
                                           ↓
                            subagent-driven-development  ←  (recomendado)
                            executing-plans              ←  (alternativa inline)
