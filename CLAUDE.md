@@ -35,16 +35,40 @@ Skills live in `.agents/skills/`. Installed via `npx skills add <source>/<repo>`
 
 ### Pipeline de desenvolvimento
 
-| Skill | Source | Role in pipeline |
+| Skill | Source | Quando ativa |
 |---|---|---|
-| `brainstorming` | obra/superpowers | Design exploration before code, Visual Companion UI |
-| `writing-plans` | obra/superpowers | Full implementation plan with decomposed tasks |
-| `executing-plans` | obra/superpowers | Bridges plan to execution choice |
-| `subagent-driven-development` | obra/superpowers | Dispatches fresh subagents per task with dual review |
-| `frontend-design` | anthropics/skills | Visual direction and production-grade UI |
-| `webapp-testing` | anthropics/skills | Playwright-based browser verification |
-| `verification-before-completion` | obra/superpowers | Evidence-first before claiming success |
-| `remember:remember` | dpt-plugins (plugin) | Session handoff to `.remember/remember.md` |
+| `using-superpowers` | obra/superpowers | Meta-skill: verifica skills aplicáveis antes de qualquer ação |
+| `brainstorming` | obra/superpowers | Antes de qualquer feature — design e spec antes de código |
+| `writing-plans` | obra/superpowers | Após brainstorming — plano detalhado com tasks decompostas |
+| `executing-plans` | obra/superpowers | Execução inline do plano com checkpoints |
+| `subagent-driven-development` | obra/superpowers | Execução via subagentes frescos por task com dual review (recomendado) |
+| `frontend-design` | anthropics/skills | Entre brainstorming e writing-plans para projetos visuais |
+| `webapp-testing` | anthropics/skills | Verificação de UI via Playwright antes de declarar pronto |
+| `verification-before-completion` | obra/superpowers | Obrigatório antes de qualquer claim de conclusão |
+| `remember:remember` | dpt-plugins (plugin) | Handoff de sessão para `.remember/remember.md` |
+
+### Qualidade e debugging
+
+| Skill | Source | Quando ativa |
+|---|---|---|
+| `systematic-debugging` | obra/superpowers | Ao encontrar qualquer bug — antes de propor qualquer fix |
+| `test-driven-development` | obra/superpowers | Ao implementar features ou bugfixes — RED-GREEN-REFACTOR |
+| `requesting-code-review` | obra/superpowers | Após tasks, features, antes de merge |
+| `receiving-code-review` | obra/superpowers | Ao receber feedback de review — verificar antes de implementar |
+| `dispatching-parallel-agents` | obra/superpowers | Quando 2+ problemas independentes podem ser resolvidos em paralelo |
+
+### Git e branches
+
+| Skill | Source | Quando ativa |
+|---|---|---|
+| `finishing-a-development-branch` | obra/superpowers | Após implementação completa — merge, PR, ou discard |
+| `using-git-worktrees` | obra/superpowers | Ao iniciar features que precisam de workspace isolado |
+
+### Criação de skills
+
+| Skill | Source | Quando ativa |
+|---|---|---|
+| `writing-skills` | obra/superpowers | Ao criar ou editar skills — TDD aplicado à documentação |
 
 ### Supabase
 
@@ -70,11 +94,24 @@ Skills live in `.agents/skills/`. Installed via `npx skills add <source>/<repo>`
 ## Skills Pipeline
 
 ```
-brainstorming → writing-plans → executing-plans → subagent-driven-development
-                                                         ↑ verification-before-completion + webapp-testing (final check)
-```
+using-superpowers (meta — governa tudo)
+        ↓
+brainstorming → [frontend-design] → writing-plans
+                                          ↓
+                           subagent-driven-development  ←  (recomendado)
+                           executing-plans              ←  (alternativa inline)
+                                          ↓
+                              [por task: test-driven-development]
+                              [por task: requesting-code-review]
+                                          ↓
+                           verification-before-completion
+                                          ↓
+                           finishing-a-development-branch
 
-`frontend-design` should be invoked between `brainstorming` and `writing-plans` to refine the visual spec before planning.
+PARALELO: systematic-debugging (qualquer bug)
+          dispatching-parallel-agents (2+ problemas independentes)
+          using-git-worktrees (workspace isolado)
+```
 
 ## Project Structure
 
