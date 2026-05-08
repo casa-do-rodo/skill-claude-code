@@ -1,0 +1,25 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:skills.sh)",
+      "Bash(Get-ChildItem -Path \"C:\\\\Users\\\\Carlos\\\\Documents\\\\Skill Claude Code\" -Force)",
+      "Bash(Select-Object Name, PSIsContainer)",
+      "Bash(New-Item -ItemType Directory -Force -Path \"C:\\\\Users\\\\Carlos\\\\Documents\\\\Skill Claude Code\\\\ikigai-landing-refined\\\\css\")",
+      "Bash(Out-Null)",
+      "Bash(New-Item -ItemType Directory -Force -Path \"C:\\\\Users\\\\Carlos\\\\Documents\\\\Skill Claude Code\\\\ikigai-landing-refined\\\\js\")",
+      "Bash(Write-Host \"Done\")",
+      "Bash(mkdir -p \"/mnt/c/Users/Carlos/Documents/Skill Claude Code/ikigai-landing-refined/css\")",
+      "Bash(mkdir -p \"/mnt/c/Users/Carlos/Documents/Skill Claude Code/ikigai-landing-refined/js\")",
+      "mcp__claude_ai_ClickUp__clickup_get_workspace_hierarchy",
+      "mcp__claude_ai_ClickUp__clickup_filter_tasks",
+      "WebFetch(domain:paperclip.ing)",
+      "WebFetch(domain:docs.paperclip.ing)",
+      "Bash(Select-String -Path \"C:\\\\Users\\\\Carlos\\\\Documents\\\\Skill Claude Code\\\\ikigai-landing-w-skills\\\\css\\\\components.css\" -Pattern \"^\\\\.\\(produto-card|diferencial-card|depoimento-card|form-group|galeria-item\\)\")",
+      "Bash(Select-Object -ExpandProperty Line)",
+      "WebSearch",
+      "WebFetch(domain:cursor.com)",
+      "WebFetch(domain:github.com)",
+      "PowerShell(winget install jqlang.jq --accept-package-agreements --accept-source-agreements)"
+    ]
+  }
+}

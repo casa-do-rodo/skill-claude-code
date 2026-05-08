@@ -1,0 +1,15 @@
+{
+  "hooks": {
+    "PreCompact": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "if (Test-Path '.remember\\checkpoint.md') { Get-Content '.remember\\checkpoint.md' }"
+          }
+        ]
+      }
+    ]
+  }
+}
