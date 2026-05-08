@@ -4,17 +4,16 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Session Continuity
 
-At the start of every session, read these files if they exist — in this order:
-1. `.remember/checkpoint.md` — mid-session state (most recent task context)
-2. `.remember/remember.md` — end-of-session handoff (what came before)
+At the start of every session, read this file if it exists:
+1. `.remember/checkpoint.md` — mid-session state (most recent task context). Read it manually via the Read tool.
 
-Use them together to restore full context before doing anything else.
+Do NOT try to read `.remember/remember.md` — the plugin already injected its content into context via the SessionStart hook and cleared the file. It will be empty if read.
 
 The `.remember/` folder is managed by the `remember:remember` plugin (dpt-plugins). Key files:
-- `remember.md` — manual handoff written via `/remember:remember`
-- `checkpoint.md` — mid-session snapshot written via `/checkpoint`
-- `now.md` — autonomous save of current state
-- `today-YYYY-MM-DD.md` — daily activity summary
+- `remember.md` — manual handoff written via `/remember:remember`. Auto-injected at session start then cleared (one-shot).
+- `checkpoint.md` — mid-session snapshot written via `/checkpoint`. Read manually; injected by PreCompact hook.
+- `now.md` — autonomous Haiku summary of session activity. Auto-injected at session start.
+- `today-YYYY-MM-DD.md` — daily compressed activity log. Auto-injected at session start.
 
 ## Checkpoint
 
