@@ -33,6 +33,8 @@ This is a **demo project for the Claude Code skills ecosystem** (superpowers). I
 
 Skills live in `.agents/skills/`. Installed via `npx skills add <source>/<repo>`, tracked in `skills-lock.json`.
 
+### Pipeline de desenvolvimento
+
 | Skill | Source | Role in pipeline |
 |---|---|---|
 | `brainstorming` | obra/superpowers | Design exploration before code, Visual Companion UI |
@@ -43,6 +45,25 @@ Skills live in `.agents/skills/`. Installed via `npx skills add <source>/<repo>`
 | `webapp-testing` | anthropics/skills | Playwright-based browser verification |
 | `verification-before-completion` | obra/superpowers | Evidence-first before claiming success |
 | `remember:remember` | dpt-plugins (plugin) | Session handoff to `.remember/remember.md` |
+
+### Supabase
+
+| Skill | Source | Quando ativa |
+|---|---|---|
+| `supabase` | supabase/agent-skills | Qualquer task com Supabase: DB, Auth, RLS, Edge Functions, pgvector, CLI |
+| `supabase-postgres-best-practices` | supabase/agent-skills | Queries, schema design, otimização Postgres (30 regras) |
+
+### n8n
+
+| Skill | Source | Quando ativa |
+|---|---|---|
+| `n8n-workflow-patterns` | czlonkowski/n8n-skills | Projetando workflows: AI agents, webhooks, database sync, batch |
+| `n8n-mcp-tools-expert` | czlonkowski/n8n-skills | Usando o MCP do n8n — consultar ANTES de qualquer tool call |
+| `n8n-node-configuration` | czlonkowski/n8n-skills | Configurando nodes com operações dependentes entre campos |
+| `n8n-validation-expert` | czlonkowski/n8n-skills | Interpretando e corrigindo erros de validação |
+| `n8n-expression-syntax` | czlonkowski/n8n-skills | Escrevendo expressões `{{}}`, `$json`, `$node` |
+| `n8n-code-javascript` | czlonkowski/n8n-skills | Code nodes em JS (padrão para 95% dos casos) |
+| `n8n-code-python` | czlonkowski/n8n-skills | Code nodes em Python (apenas quando explicitamente solicitado) |
 
 ## Skills Pipeline
 
