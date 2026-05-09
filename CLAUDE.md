@@ -45,7 +45,7 @@ Skills instaladas via marketplaces vivem em `.agents/skills/` (instaladas com `n
 | `executing-plans` | obra/superpowers | Execução inline do plano com checkpoints |
 | `subagent-driven-development` | obra/superpowers | Execução via subagentes frescos por task com dual review (recomendado) |
 | `frontend-design` | anthropics/skills | Entre brainstorming e writing-plans para projetos visuais |
-| `webapp-testing` | anthropics/skills | Verificação de UI via Playwright antes de declarar pronto |
+| `webapp-testing` | anthropics/skills | Captura screenshots via Playwright — integrado ao `frontend-audit-gate` (Step 0 do audit híbrido) |
 | `verification-before-completion` | obra/superpowers | Obrigatório antes de qualquer claim de conclusão |
 | `remember:remember` | dpt-plugins (plugin) | Handoff de sessão para `.remember/remember.md` |
 
@@ -85,7 +85,7 @@ Skills instaladas via marketplaces vivem em `.agents/skills/` (instaladas com `n
 | `vercel-composition-patterns` | vercel-labs/agent-skills | React composition patterns (compound components, render props, contexts) |
 | `vercel-react-best-practices` | vercel-labs/agent-skills | Performance React/Next.js: rendering, bundle, data fetching |
 | `vercel-react-view-transitions` | vercel-labs/agent-skills | Animações de transição de página/rota com View Transition API |
-| `frontend-audit-gate` | custom | **Gate obrigatório** antes de `finishing-a-development-branch`. Orquestra os 3 audits e propõe aplicação manual ou paralela via `ui-subagent` |
+| `frontend-audit-gate` | custom | **Gate obrigatório** antes de `finishing-a-development-branch`. Step 0 captura screenshots (audit híbrido via `webapp-testing`), orquestra os 3 audits cruzando código + visual, propõe aplicação via `ui-subagent`. Híbrido produz ~2× mais findings que code-only. |
 
 ### Supabase
 
@@ -126,6 +126,7 @@ A skill `using-superpowers` invoca `brainstorming` no início. **Após brainstor
 ### Regras invioláveis
 
 - **`frontend-audit-gate` é gate obrigatório** antes de `finishing-a-development-branch` em **qualquer projeto frontend**. Sem exceção.
+- **O gate deve rodar no modo híbrido** (código + screenshots Playwright). Se não tiver servidor disponível, registrar `code-only` no relatório e sugerir rodar híbrido antes do próximo ship.
 - **Tasks de UI dentro de `subagent-driven-development` vão pro `ui-subagent`** (não pro subagente genérico). Mantém qualidade visual Opus 4.7 mesmo se a sessão principal for Sonnet.
 - **Para LP/componente simples, `writing-plans` é opcional** — se a build for iterativa com feedback visual em tempo real, dispensável. Para projetos com state/lógica complexa, é obrigatório.
 
@@ -154,7 +155,9 @@ build iterativo                         writing-plans
    └──────────┬─────────────────────────────┘
               ↓
         frontend-audit-gate (OBRIGATÓRIO)
-              ↓ (manual OU paralelo via ui-subagent)
+              ↓ Step 0: webapp-testing → screenshots Playwright
+              ↓ Steps 1-3: audits cruzando código + visual (híbrido)
+              ↓ (aplicação: manual OU paralelo via ui-subagent)
         aplicação dos fixes
               ↓
         verification-before-completion (apps complexos)
@@ -177,25 +180,30 @@ Subagentes ficam em `.claude/agents/<name>.md`. São diferentes de skills — t�
 ## Project Structure
 
 ```
-docs/superpowers/specs/   — design specs produced by brainstorming
-docs/superpowers/plans/   — implementation plans produced by writing-plans
-ikigai-landing/           — demo v1: no skills, direct code
-ikigai-landing-refined/   — demo v2: brainstorming + writing-plans + executing-plans
-ikigai-landing-w-skills/  — demo v3: full pipeline (all 5+ skills)
+assets/                        — brand assets FacioFlow (SVGs, logos, PDF)
+docs/audits/                   — relatórios de audit + screenshots Playwright
+docs/audits/screenshots/       — capturas do webapp-testing para audit híbrido
+docs/superpowers/specs/        — design specs produced by brainstorming
+docs/superpowers/plans/        — implementation plans produced by writing-plans
+facioflow-skills-landing/      — LP ativa (v2, produção) — brand FacioFlow
+skills-landing/                — LP anterior (v1) — referência histórica
+scripts/audit_visual.mjs       — captura screenshots via Playwright (porta 8080)
+scripts/audit_visual.py        — versão Python equivalente
 ```
 
-Landing pages are vanilla HTML/CSS/JS with no build step. Open via `file://` in the browser or use a local static server.
+Landing pages are vanilla HTML/CSS/JS with no build step. Open via `file://` in the browser or use a local static server (`python -m http.server 8080`).
 
-## Landing Page Architecture (ikigai-landing-w-skills)
+## Landing Page Architecture (facioflow-skills-landing)
 
 - `css/tokens.css` — all design tokens (colors, spacing, typography) as CSS custom properties
-- `css/base.css` — reset, keyframe animations (`reveal-up`, `fade-up`)
-- `css/components.css` — reusable UI components (navbar, buttons, cards, form)
+- `css/base.css` — reset, keyframe animations
+- `css/components.css` — reusable UI components (navbar, buttons, cards, chips, badges)
 - `css/sections.css` — per-section layout + responsive breakpoints
-- `index.html` — 9 sections, pt-BR, no external dependencies
-- `js/main.js` — IntersectionObserver, scroll behavior, mobile menu, form
+- `index.html` — 6 sections, pt-BR, no external dependencies
+- `js/main.js` — IntersectionObserver, scroll behavior, mobile menu, aria-expanded
 
 Design decisions (locked — do not change without brainstorming):
 - Always dark, no light mode toggle
-- Bebas Neue (display) + Inter (body)
-- Amber `#E8970A` as the sole accent color
+- Tomorrow (display, weight 700 max) + Inter (body)
+- Accent `#2463EB` (blue) + cyan `#9DDBFF` como secondary
+- `font-weight: 900` no Tomorrow causa artefato RGB-split — sempre usar `700` em headlines
