@@ -1,8 +1,3 @@
-# Landing pages (demo artifacts, not versioned)
-ikigai-landing/
-ikigai-landing-refined/
-ikigai-landing-w-skills/
-
 # Environment variables
 .env
 .env.local
