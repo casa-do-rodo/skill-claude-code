@@ -3,6 +3,7 @@
 import { usePathname } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 import { getSupabaseBrowser } from "@/lib/supabase/client";
+import { formatRelativeTime } from "@/lib/format/relative-time";
 import { openMobileSidebar } from "./sidebar";
 import styles from "./topbar.module.css";
 
@@ -26,16 +27,14 @@ function getBreadcrumbLabel(pathname: string): string {
   return segment.charAt(0).toUpperCase() + segment.slice(1);
 }
 
-function formatRelativeTime(isoDate: string | null): string {
+/**
+ * Wrap do helper compartilhado: topbar exibe "nunca" quando ainda não houve
+ * sync, enquanto o helper canônico só trata timestamps existentes. Esse
+ * fallback fica isolado aqui pra não poluir a API do helper.
+ */
+function describeLastSync(isoDate: string | null): string {
   if (!isoDate) return "nunca";
-  const ms = Date.now() - new Date(isoDate).getTime();
-  const minutes = Math.floor(ms / 60000);
-  if (minutes < 1) return "agora";
-  if (minutes < 60) return `há ${minutes} min`;
-  const hours = Math.floor(minutes / 60);
-  if (hours < 24) return `há ${hours} h`;
-  const days = Math.floor(hours / 24);
-  return `há ${days} d`;
+  return formatRelativeTime(isoDate);
 }
 
 export function Topbar() {
@@ -104,9 +103,19 @@ export function Topbar() {
       </div>
 
       <div className={styles.right}>
-        <div className={styles.syncStatus} title={lastSyncAt ?? "Nunca sincronizado"}>
+        <div
+          className={styles.syncStatus}
+          title={
+            lastSyncAt
+              ? new Date(lastSyncAt).toLocaleString("pt-BR", {
+                  dateStyle: "short",
+                  timeStyle: "short",
+                })
+              : "Nunca sincronizado"
+          }
+        >
           <span className={styles.syncDot} data-stale={isStale ? "true" : "false"} />
-          <span>Última sync {formatRelativeTime(lastSyncAt)}</span>
+          <span>Última sync {describeLastSync(lastSyncAt)}</span>
         </div>
 
         <button

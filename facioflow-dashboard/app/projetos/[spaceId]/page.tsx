@@ -161,6 +161,19 @@ export default async function SpaceDrilldownPage({
                   return (
                     <details key={list.id} className={styles.listItem}>
                       <summary className={styles.listSummary}>
+                        {/* SVG inline em vez do glyph "▸" UTF-8: tamanho
+                            consistente entre browsers (fontes podem inflar/
+                            distorcer o triângulo) e currentColor herda do
+                            estado [open] sem reset extra. */}
+                        <svg
+                          className={styles.summaryIcon}
+                          viewBox="0 0 12 12"
+                          width="10"
+                          height="10"
+                          aria-hidden="true"
+                        >
+                          <path d="M3 2 L9 6 L3 10 Z" fill="currentColor" />
+                        </svg>
                         <span className={styles.listName}>{list.name}</span>
                         <span className={styles.listMeta}>
                           {list.tasks.length} tasks · {listPct}% complete
@@ -180,6 +193,25 @@ export default async function SpaceDrilldownPage({
                                   className={styles.taskName}
                                 >
                                   {t.name}
+                                  {/* External-link glyph: sinaliza que abre
+                                      em nova aba antes do click. fill=none +
+                                      stroke=currentColor herda do hover. */}
+                                  <svg
+                                    className={styles.externalIcon}
+                                    viewBox="0 0 12 12"
+                                    width="10"
+                                    height="10"
+                                    aria-hidden="true"
+                                  >
+                                    <path
+                                      d="M5 2 H10 V7 M10 2 L4 8 M3 4 H2 V10 H8 V9"
+                                      stroke="currentColor"
+                                      strokeWidth="1.2"
+                                      fill="none"
+                                      strokeLinecap="round"
+                                      strokeLinejoin="round"
+                                    />
+                                  </svg>
                                 </a>
                               ) : (
                                 <span className={styles.taskName}>
@@ -255,7 +287,7 @@ function statusColor(status: string): string {
     case "to do":
       return "var(--cyan)";
     case "update required":
-      return "#FBBF24";
+      return "var(--warning)";
     default:
       return "var(--text-muted)";
   }

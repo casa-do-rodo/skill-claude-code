@@ -91,6 +91,16 @@ export function Sidebar() {
     return () => window.removeEventListener("facioflow:sidebar-open", handler);
   }, []);
 
+  // Escape fecha drawer mobile (a11y — modal-like overlay precisa de saída por teclado)
+  useEffect(() => {
+    if (!mobileOpen) return;
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setMobileOpen(false);
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [mobileOpen]);
+
   const isActive = (href: string) => {
     if (href === "/") return pathname === "/";
     return pathname === href || pathname.startsWith(`${href}/`);
@@ -98,7 +108,7 @@ export function Sidebar() {
 
   return (
     <>
-      <aside
+      <nav
         className={styles.sidebar}
         data-collapsed={collapsed ? "true" : "false"}
         data-mobile-open={mobileOpen ? "true" : "false"}
@@ -111,10 +121,12 @@ export function Sidebar() {
             className={styles.logo}
             aria-hidden="true"
           />
-          <span className={styles.wordmark}>FacioFlow</span>
+          <span className={styles.wordmark} aria-hidden={collapsed}>
+            FacioFlow
+          </span>
         </div>
 
-        <nav className={styles.nav}>
+        <div className={styles.nav}>
           {ROUTES.map((route) => (
             <Link
               key={route.href}
@@ -127,7 +139,7 @@ export function Sidebar() {
               <span className={styles.navLabel}>{route.label}</span>
             </Link>
           ))}
-        </nav>
+        </div>
 
         <div className={styles.footer}>
           <button
@@ -140,7 +152,7 @@ export function Sidebar() {
             <ChevronIcon direction={collapsed ? "right" : "left"} />
           </button>
         </div>
-      </aside>
+      </nav>
 
       <div
         className={styles.backdrop}

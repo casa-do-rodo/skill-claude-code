@@ -15,6 +15,8 @@
   --n8n-dim:         rgba(234, 75, 72, 0.12);
   --cyan:            #9DDBFF;
   --cyan-dim:        rgba(157, 219, 255, 0.12);
+  --warning:         #FBBF24;
+  --warning-dim:     rgba(251, 191, 36, 0.12);
 
   --text:            #FFFFFF;
   --text-muted:      #6B7280;
@@ -43,4 +45,13 @@
   --sidebar-width-expanded: 240px;
   --sidebar-width-collapsed: 64px;
   --topbar-height: 56px;
+
+  /* z-index scale */
+  --z-content:           1;
+  --z-dropdown:          30;
+  --z-topbar:            40;
+  --z-sidebar-backdrop:  49;
+  --z-sidebar:           50;
+  --z-overlay:           100;
+  --z-grain:             200;
 }

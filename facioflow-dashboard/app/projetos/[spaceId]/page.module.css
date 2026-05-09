@@ -202,22 +202,19 @@
   content: "";
 }
 
-/* Triângulo custom — substitui o marker default por um glyph
-   alinhado com a tipografia geometric do dashboard. */
-.listSummary::before {
-  content: "▸";
-  display: inline-block;
-  margin-right: var(--space-2);
+/* Triângulo SVG inline (no JSX). Substitui o glyph "▸" — SVG render é
+   estável entre browsers e currentColor herda do estado [open] sem precisar
+   de regra adicional pra trocar a cor. transform: rotate(90deg) gira sem
+   layout shift (transform não afeta box). */
+.summaryIcon {
   color: var(--text-muted);
-  transition: transform var(--trans);
-  font-size: 10px;
-  /* line-height: 1 + flex-shrink: 0 garante que o glyph não distorce
-     a baseline do summary inteiro */
-  line-height: 1;
+  transition:
+    transform var(--trans),
+    color var(--trans);
   flex-shrink: 0;
 }
 
-.listItem[open] .listSummary::before {
+.listItem[open] .summaryIcon {
   transform: rotate(90deg);
   color: var(--accent-text);
 }
@@ -281,6 +278,21 @@
 
 a.taskName:hover {
   color: var(--accent-text);
+}
+
+/* External-link icon: sinaliza target="_blank" antes do click.
+   vertical-align: middle alinha com o baseline do texto truncado. */
+.externalIcon {
+  display: inline-block;
+  margin-left: 4px;
+  color: var(--text-faint);
+  transition: color var(--trans);
+  vertical-align: middle;
+  flex-shrink: 0;
+}
+
+a.taskName:hover .externalIcon {
+  color: var(--accent);
 }
 
 .taskEmpty {

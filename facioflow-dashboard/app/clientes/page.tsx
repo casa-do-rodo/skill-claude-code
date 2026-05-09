@@ -1,4 +1,5 @@
 import { getSupabaseServer } from "@/lib/supabase/server";
+import { formatRelativeTime } from "@/lib/format/relative-time";
 import styles from "./page.module.css";
 
 // Dashboard interno: deve refletir último estado da DB (sync n8n).
@@ -107,7 +108,10 @@ export default async function ClientesPage() {
           return (
             <article key={r.id} className={styles.card}>
               <header className={styles.cardHead}>
-                <div className={styles.avatar} aria-hidden="true">
+                <div
+                  className={`${styles.avatar} ${styles[`avatar_${r.type}`]}`}
+                  aria-hidden="true"
+                >
                   {initial}
                 </div>
                 <span
@@ -154,7 +158,7 @@ export default async function ClientesPage() {
                 aria-valuenow={r.pct}
                 aria-valuemin={0}
                 aria-valuemax={100}
-                aria-label={`${r.pct}% completo`}
+                aria-label={`Progresso de ${r.name}: ${r.pct}% completo`}
               >
                 <div
                   className={styles.progressFill}
@@ -165,7 +169,7 @@ export default async function ClientesPage() {
               <footer className={styles.footer}>
                 <span className={styles.lastActivity}>
                   {r.lastUpdated
-                    ? `Última atividade: ${humanize(r.lastUpdated)}`
+                    ? `Última atividade: ${formatRelativeTime(r.lastUpdated)}`
                     : "Sem atividade ainda"}
                 </span>
               </footer>
@@ -175,24 +179,4 @@ export default async function ClientesPage() {
       </div>
     </div>
   );
-}
-
-/**
- * humanize — formata ISO date como "há X min/h/d/meses".
- *
- * Pt-BR, sem libs (date-fns/dayjs). Ranges escolhidos por legibilidade:
- * < 60min → minutos · < 24h → horas · < 30d → dias · resto → meses (30d).
- * Aproximação 30d/mês é OK pra "última atividade" (não é financeiro).
- */
-function humanize(iso: string): string {
-  const diffMs = Date.now() - new Date(iso).getTime();
-  const minutes = Math.floor(diffMs / 60000);
-  if (minutes < 1) return "agora";
-  if (minutes < 60) return `há ${minutes} min`;
-  const hours = Math.floor(minutes / 60);
-  if (hours < 24) return `há ${hours}h`;
-  const days = Math.floor(hours / 24);
-  if (days < 30) return `há ${days}d`;
-  const months = Math.floor(days / 30);
-  return `há ${months} ${months > 1 ? "meses" : "mês"}`;
 }

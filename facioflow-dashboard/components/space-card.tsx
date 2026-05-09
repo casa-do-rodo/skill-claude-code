@@ -38,7 +38,10 @@ export function SpaceCard({
   return (
     <article className={styles.card}>
       <header className={styles.head}>
-        <div className={styles.avatar} aria-hidden="true">
+        <div
+          className={`${styles.avatar} ${styles[`avatar_${type}`]}`}
+          aria-hidden="true"
+        >
           {initial}
         </div>
         <span className={`${styles.badge} ${styles[`badge_${type}`]}`}>
@@ -69,7 +72,7 @@ export function SpaceCard({
         aria-valuenow={pct}
         aria-valuemin={0}
         aria-valuemax={100}
-        aria-label={`${pct}% completo`}
+        aria-label={`Progresso de ${name}: ${pct}% completo`}
       >
         <div className={styles.progressBar}>
           <div

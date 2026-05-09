@@ -58,6 +58,25 @@ export function TaskList({ title, tasks, emptyText }: TaskListProps) {
                       className={styles.itemName}
                     >
                       {task.name}
+                      {/* External-link glyph: sinaliza target="_blank" antes
+                          do click. fill=none + stroke=currentColor herda do
+                          hover do <a>. */}
+                      <svg
+                        className={styles.externalIcon}
+                        viewBox="0 0 12 12"
+                        width="10"
+                        height="10"
+                        aria-hidden="true"
+                      >
+                        <path
+                          d="M5 2 H10 V7 M10 2 L4 8 M3 4 H2 V10 H8 V9"
+                          stroke="currentColor"
+                          strokeWidth="1.2"
+                          fill="none"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
                     </a>
                   ) : (
                     <span className={styles.itemName}>{task.name}</span>
@@ -136,12 +155,12 @@ const STATUS_COLORS: Record<string, string> = {
   complete: "var(--supabase)",
   pendente: "var(--accent)",
   "to do": "var(--cyan)",
-  "update required": "#FBBF24",
+  "update required": "var(--warning)",
 };
 
 const PRIORITY_COLORS: Record<string, string> = {
   urgent: "var(--n8n)",
-  high: "#FBBF24",
+  high: "var(--warning)",
   normal: "var(--cyan)",
   low: "var(--text-faint)",
 };

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useInView } from "@/lib/hooks/use-in-view";
 import styles from "./animated-counter.module.css";
 
@@ -96,10 +96,23 @@ export function AnimatedCounter({
       ? formatNumber(Math.round(display), 0)
       : formatNumber(display, decimals);
 
+  // aria-label memoizado: só recalcula quando o valor final muda,
+  // não a cada tick do RAF. Screen readers leem o valor estável.
+  const finalLabel = useMemo(
+    () => `${prefix}${formatNumber(value, decimals)}${suffix}`,
+    [prefix, value, decimals, suffix]
+  );
+
   const classes = className ? `${styles.counter} ${className}` : styles.counter;
 
   return (
-    <span ref={ref} className={classes} aria-label={`${prefix}${formatNumber(value, decimals)}${suffix}`}>
+    <span
+      ref={ref}
+      className={classes}
+      aria-label={finalLabel}
+      role="status"
+      aria-atomic="true"
+    >
       {prefix}
       {rendered}
       {suffix}

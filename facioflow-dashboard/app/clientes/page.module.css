@@ -75,10 +75,10 @@
 .avatar {
   width: 44px;
   height: 44px;
-  border-radius: 50%;
-  background: var(--accent-dim);
-  border: 1px solid var(--border-accent);
-  color: var(--accent-text);
+  /* Squircle (radius-md) em vez de círculo: alinha com o resto dos
+     cards/badges do dashboard (todos usam radius-md/sm). Avatar redondo
+     parecia genérico de SaaS — squircle é mais "objeto" e coerente. */
+  border-radius: var(--radius-md);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -88,6 +88,20 @@
   /* tabular-nums só ajuda em letras + numerais misturados;
      iniciais são sempre 1 char então é redundante mas inofensivo. */
   font-variant-numeric: tabular-nums;
+}
+
+/* Variants por tipo: cliente usa accent (amber), interno usa cyan.
+   Mesma paleta dos badges → reforça a relação visual cliente↔interno. */
+.avatar_client {
+  background: var(--accent-dim);
+  color: var(--accent-text);
+  border: 1px solid var(--border-accent);
+}
+
+.avatar_internal {
+  background: var(--cyan-dim);
+  color: var(--cyan);
+  border: 1px solid rgba(157, 219, 255, 0.3);
 }
 
 .typeBadge {

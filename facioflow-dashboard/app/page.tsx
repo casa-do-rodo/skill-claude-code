@@ -1,4 +1,5 @@
 import { getSupabaseServer } from "@/lib/supabase/server";
+import { formatRelativeTime } from "@/lib/format/relative-time";
 import { AnimatedCounter } from "@/components/charts/animated-counter";
 import { StatusDonut } from "@/components/charts/status-donut";
 import { SpaceBars } from "@/components/charts/space-bars";
@@ -148,7 +149,7 @@ export default async function Home() {
     { label: "complete", value: statusCounts["complete"] ?? 0, color: "var(--supabase)" },
     { label: "pendente", value: statusCounts["pendente"] ?? 0, color: "var(--accent)" },
     { label: "to do", value: statusCounts["to do"] ?? 0, color: "var(--cyan)" },
-    { label: "update required", value: statusCounts["update required"] ?? 0, color: "#FBBF24" },
+    { label: "update required", value: statusCounts["update required"] ?? 0, color: "var(--warning)" },
   ].filter((s) => s.value > 0);
 
   return (
@@ -175,7 +176,7 @@ export default async function Home() {
         <KpiCard label="Última sync">
           {/* Não usa AnimatedCounter — string formatada, animar bytes não faz sentido */}
           {syncRes.data?.finished_at
-            ? humanizeRelativeTime(syncRes.data.finished_at)
+            ? formatRelativeTime(syncRes.data.finished_at)
             : "—"}
         </KpiCard>
       </section>
@@ -209,20 +210,4 @@ export default async function Home() {
       </section>
     </div>
   );
-}
-
-/**
- * Humaniza timestamp ISO em pt-BR. Granularidade adaptativa:
- * <1min "agora há pouco" / <60min min / <24h h / >24h dias.
- * Suficiente pra "última sync" — não vamos ter sync de meses sem alguém notar.
- */
-function humanizeRelativeTime(isoTimestamp: string): string {
-  const diffMs = Date.now() - new Date(isoTimestamp).getTime();
-  const minutes = Math.floor(diffMs / 60_000);
-  if (minutes < 1) return "agora há pouco";
-  if (minutes < 60) return `há ${minutes} min`;
-  const hours = Math.floor(minutes / 60);
-  if (hours < 24) return `há ${hours}h`;
-  const days = Math.floor(hours / 24);
-  return `há ${days}d`;
 }

@@ -74,6 +74,22 @@ a.itemName:hover {
   color: var(--accent-text);
 }
 
+/* External-link icon: dá pista visual de target="_blank" sem inflar o nome.
+   vertical-align: middle alinha com o baseline da fonte; herda hover do <a>
+   pai via currentColor (definido no SVG inline). */
+.externalIcon {
+  display: inline-block;
+  margin-left: 4px;
+  color: var(--text-faint);
+  transition: color var(--trans);
+  vertical-align: middle;
+  flex-shrink: 0;
+}
+
+a.itemName:hover .externalIcon {
+  color: var(--accent);
+}
+
 .itemBreadcrumb {
   font-family: var(--font-body);
   font-size: 11px;

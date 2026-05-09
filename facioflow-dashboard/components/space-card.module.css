@@ -31,9 +31,9 @@
 .avatar {
   width: 40px;
   height: 40px;
-  border-radius: 50%;
-  background: var(--accent-dim);
-  color: var(--accent-text);
+  /* Squircle (radius-md) em vez de círculo: avatar redondo é genérico
+     de SaaS; squircle alinha com cards/badges do dashboard. */
+  border-radius: var(--radius-md);
   font-family: var(--font-display);
   font-size: 18px;
   font-weight: 700;
@@ -42,8 +42,20 @@
   justify-content: center;
   /* line-height 1: garante centralização visual perfeita do glyph */
   line-height: 1;
-  /* border sutil pra dar profundidade ao chip — fica mais "objeto" */
+}
+
+/* Variants por tipo: cliente=accent (amber), interno=cyan.
+   Espelha o badge — visualmente óbvio que avatar e badge dizem a mesma coisa. */
+.avatar_client {
+  background: var(--accent-dim);
+  color: var(--accent-text);
   border: 1px solid var(--border-accent);
+}
+
+.avatar_internal {
+  background: var(--cyan-dim);
+  color: var(--cyan);
+  border: 1px solid rgba(157, 219, 255, 0.3);
 }
 
 .badge {
