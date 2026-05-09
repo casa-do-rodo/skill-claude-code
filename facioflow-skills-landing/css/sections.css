@@ -264,7 +264,8 @@
   font-weight: 700;
   letter-spacing: 2px;
   text-transform: uppercase;
-  color: var(--text-faint);
+  color: var(--text-muted);
+  opacity: 0.7;
   margin-bottom: var(--space-4);
 }
 
@@ -327,52 +328,22 @@
 }
 
 .tree-merge-lines {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
   width: 100%;
   max-width: 800px;
   height: 32px;
-  position: relative;
-}
-.tree-merge-lines::before {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 25%;
-  right: 25%;
-  height: 1px;
-  background: var(--border);
-}
-.tree-merge-lines::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 1px;
-  height: 100%;
-  background: var(--border);
-}
-.tree-merge-left::before,
-.tree-merge-right::before {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  width: 1px;
-  height: 100%;
-  background: var(--border);
 }
 .tree-merge-left {
-  position: relative;
-}
-.tree-merge-left::before {
-  left: 50%;
+  flex: 1;
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  border-radius: 0 0 6px 0;
 }
 .tree-merge-right {
-  position: relative;
-}
-.tree-merge-right::before {
-  left: 50%;
+  flex: 1;
+  border-left: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  border-radius: 0 0 0 6px;
 }
 
 /* ── CAPABILITIES ───────────────────────────── */
@@ -405,7 +376,7 @@
 .arsenal-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-10);
+  gap: var(--space-6);
 }
 
 @media (max-width: 900px) {
