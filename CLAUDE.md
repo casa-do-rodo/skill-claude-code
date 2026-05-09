@@ -79,6 +79,7 @@ Skills instaladas via marketplaces vivem em `.agents/skills/` (instaladas com `n
 |---|---|---|
 | `design-taste-frontend` | leonxlnx/taste-skill | Rigor técnico em UI: DESIGN_VARIANCE/MOTION_INTENSITY metrics, anti-slop, GPU-safe motion |
 | `svg-animations` | supermemoryai/skills | Qualquer animação SVG: path drawing, motion paths, masks, filters, SMIL, keySplines |
+| `svg-animations-pitfalls` | custom | **Sempre junto com `svg-animations`.** Catálogo de bugs comuns: transform-box, animate r não-GPU, animateMotion em paths complexos, IDs colidindo, ARIA conflicts |
 | `web-design-guidelines` | vercel-labs/agent-skills | Audit de UI contra Vercel Web Interface Guidelines (a11y, focus, anti-patterns) |
 | `redesign-existing-projects` | leonxlnx/taste-skill | Audit de gosto: identifica genericidade AI, propõe upgrades estéticos |
 | `full-output-enforcement` | leonxlnx/taste-skill | Anti-truncation: força output completo em tasks longas |
@@ -86,6 +87,9 @@ Skills instaladas via marketplaces vivem em `.agents/skills/` (instaladas com `n
 | `vercel-react-best-practices` | vercel-labs/agent-skills | Performance React/Next.js: rendering, bundle, data fetching |
 | `vercel-react-view-transitions` | vercel-labs/agent-skills | Animações de transição de página/rota com View Transition API |
 | `frontend-audit-gate` | custom | **Gate obrigatório** antes de `finishing-a-development-branch`. Step 0 captura screenshots (audit híbrido via `webapp-testing`), orquestra os 3 audits cruzando código + visual, propõe aplicação via `ui-subagent`. Híbrido produz ~2× mais findings que code-only. |
+| `interactive-mockups` | custom | Padrão de "service visuals" animados (workflow, chat, dashboard, code). Templates reutilizáveis + IntersectionObserver single-fire. Use quando seção descreve processo dinâmico do produto. |
+| `reveal-patterns` | custom | Padrões de reveal on-scroll: `data-delay` (1-3 items) vs CSS stagger via classe (grid 4+) vs animation-fill-mode (mockups complexos). Threshold guidance por contexto. |
+| `brand-aware-defaults` | custom | Tabela de cores de marcas conhecidas (n8n, Supabase, GitHub, etc.). Use ao especificar LP/app que mencione serviços terceiros — default à cor de marca real, não accent genérico. |
 
 ### Supabase
 
@@ -131,6 +135,16 @@ A skill `using-superpowers` invoca `brainstorming` no início. **Após brainstor
 - **Tasks de UI dentro de `subagent-driven-development` vão pro `ui-subagent`** (não pro subagente genérico). Mantém qualidade visual Opus 4.7 mesmo se a sessão principal for Sonnet.
 - **`verification-before-completion` é obrigatório** antes de `finishing-a-development-branch` em **qualquer projeto frontend** — sem exceção, incluindo LP simples. Exige: abrir no browser, confirmar visualmente que animações rodam, responsivo funciona e nenhum elemento está quebrado. Evidência antes de qualquer claim de "pronto".
 - **Para LP/componente simples, `writing-plans` é opcional** — se a build for iterativa com feedback visual em tempo real, dispensável. Para projetos com state/lógica complexa, é obrigatório.
+
+### Checklist obrigatório do brainstorming (projetos visuais)
+
+Após o spec ser aprovado e antes de partir pro `writing-plans`, brainstorming **deve** validar:
+
+- [ ] **Brand awareness** — spec menciona serviço conhecido (n8n, Supabase, GitHub, etc.)? Se sim, consultar `brand-aware-defaults` e definir tokens de marca antes de assumir accent genérico
+- [ ] **Motion intensity** — cada visual da LP é estático ou animado? Default em LPs de produto = animado (`interactive-mockups`). Default em LPs editorais = estático
+- [ ] **Service visuals** — seções que descrevem processo dinâmico precisam de mockup animado (workflow / chat / dashboard / code via `interactive-mockups`)
+- [ ] **Reveal strategy por seção** — grids de 4+ items usam `reveal-patterns` Estratégia B (CSS stagger via classe injetada). 1-3 items podem usar Estratégia A (`data-delay`)
+- [ ] **SVG pitfalls** — qualquer animação SVG nova consulta `svg-animations-pitfalls` durante implementação (não só após audit)
 
 ### Diagrama visual
 
