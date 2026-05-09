@@ -233,6 +233,25 @@
   align-items: start;
 }
 
+/* Arsenal: stagger CSS controlado por .arsenal-revealed (injetada pelo JS).
+   Especificidade > .reveal global, então sobrescreve sem conflito. */
+.arsenal-grid .arsenal-category {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.arsenal-grid.arsenal-revealed .arsenal-category {
+  opacity: 1;
+  transform: none;
+}
+.arsenal-grid.arsenal-revealed .arsenal-category:nth-child(1) { transition-delay: 0ms; }
+.arsenal-grid.arsenal-revealed .arsenal-category:nth-child(2) { transition-delay: 100ms; }
+.arsenal-grid.arsenal-revealed .arsenal-category:nth-child(3) { transition-delay: 200ms; }
+.arsenal-grid.arsenal-revealed .arsenal-category:nth-child(4) { transition-delay: 300ms; }
+.arsenal-grid.arsenal-revealed .arsenal-category:nth-child(5) { transition-delay: 400ms; }
+.arsenal-grid.arsenal-revealed .arsenal-category:nth-child(6) { transition-delay: 500ms; }
+
 @media (max-width: 900px) {
   .arsenal-grid { grid-template-columns: repeat(2, 1fr); }
 }
@@ -252,6 +271,14 @@
 .cta-inner {
   position: relative;
   z-index: 1;
+}
+
+/* CTA usa text-align:center no .cta, mas .section-sub costuma ter
+   max-width próprio — força auto margin p/ centrar quando max-width existir */
+.cta .section-sub {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
 }
 
 .cta-actions {

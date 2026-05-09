@@ -349,11 +349,15 @@
 .loader-three-orbiters .d2 { animation-delay: -0.8s; }
 .loader-three-orbiters .d3 { animation-delay: -1.6s; }
 
-/* ── LOADER: Wavy Ring (#06) ────────────────── */
-.loader-wavy-ring .wave {
-  animation: wave06 6s linear infinite;
-  transform-box: view-box;
+/* ── LOADER: Supabase Arc ───────────────────── */
+/* substitui Wavy Ring: arco 3/4 girando sobre track fixo */
+.loader-wavy-ring .track {
+  opacity: 0.15;
+}
+.loader-wavy-ring .arc {
+  animation: wave06 2s linear infinite;
   transform-origin: 100px 100px;
+  transform-box: view-box;
 }
 
 /* ── STACK CARD ─────────────────────────────── */
@@ -407,9 +411,9 @@
   border: 1px solid var(--border-cyan);
 }
 .stack-label--n8n {
-  color: var(--accent);
-  background: var(--accent-dim);
-  border: 1px solid var(--border-accent);
+  color: var(--n8n);
+  background: var(--n8n-dim);
+  border: 1px solid var(--border-n8n);
 }
 .stack-label--supabase {
   color: var(--green);

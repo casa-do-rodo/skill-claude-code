@@ -34,3 +34,15 @@ document.querySelectorAll('.reveal').forEach((el, i) => {
   if (!el.dataset.delay) el.dataset.delay = i * 80;
   observer.observe(el);
 });
+
+// Observer dedicado pro arsenal-grid: trigga a classe que ativa o stagger via CSS
+const arsenalGrid = document.querySelector('.arsenal-grid');
+if (arsenalGrid) {
+  const arsenalObserver = new IntersectionObserver(([entry]) => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('arsenal-revealed');
+      arsenalObserver.unobserve(entry.target);
+    }
+  }, { threshold: 0.08 });
+  arsenalObserver.observe(arsenalGrid);
+}
