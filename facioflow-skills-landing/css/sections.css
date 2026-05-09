@@ -132,12 +132,21 @@
 
 .problem-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: var(--space-6);
 }
 
 @media (max-width: 768px) {
   .problem-grid { grid-template-columns: 1fr; }
+  /* mobile: primeiro card volta ao layout vertical pra não esmagar texto */
+  .problem-card:first-child {
+    flex-direction: column;
+    gap: var(--space-5);
+    padding: var(--space-8);
+  }
+  .problem-card:first-child .problem-card-icon {
+    margin-bottom: 0;
+  }
 }
 
 /* ── PIPELINE ───────────────────────────────── */
@@ -489,7 +498,7 @@
   gap: var(--space-3);
 }
 .footer-sep {
-  color: var(--text-faint);
+  color: var(--text-muted);
   font-family: var(--font-display);
   font-size: 10px;
 }
