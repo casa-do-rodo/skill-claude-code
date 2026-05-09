@@ -87,6 +87,7 @@
   letter-spacing: -2px;
   color: var(--text);
   margin-bottom: var(--space-6);
+  text-wrap: balance;
 }
 .hero-headline-l1 { display: block; animation: reveal-up 0.75s ease 0.35s both; }
 .hero-headline-l2 { display: block; animation: reveal-up 0.75s ease 0.5s both; }
@@ -131,6 +132,9 @@
   gap: var(--space-5);
   margin-top: var(--space-12);
 }
+/* asymmetric stagger: cards descem em diagonal, quebra o "3 colunas iguais" */
+.problema-grid > :nth-child(2) { margin-top: var(--space-10); }
+.problema-grid > :nth-child(3) { margin-top: var(--space-20); }
 
 .prob-card {
   background: var(--bg-surface);
@@ -172,6 +176,7 @@
 
 @media (max-width: 768px) {
   .problema-grid { grid-template-columns: 1fr; }
+  .problema-grid > * { margin-top: 0 !important; }
 }
 
 /* ─── PIPELINE ────────────────────────────────────── */

@@ -8,9 +8,14 @@ window.addEventListener('scroll', () => {
 const toggle = document.querySelector('.navbar-mobile-toggle');
 const links  = document.querySelector('.navbar-links');
 if (toggle && links) {
-  toggle.addEventListener('click', () => links.classList.toggle('open'));
+  const setOpen = (open) => {
+    links.classList.toggle('open', open);
+    toggle.setAttribute('aria-expanded', String(open));
+    toggle.setAttribute('aria-label', open ? 'Fechar menu' : 'Abrir menu');
+  };
+  toggle.addEventListener('click', () => setOpen(!links.classList.contains('open')));
   links.querySelectorAll('a').forEach(a =>
-    a.addEventListener('click', () => links.classList.remove('open'))
+    a.addEventListener('click', () => setOpen(false))
   );
 }
 

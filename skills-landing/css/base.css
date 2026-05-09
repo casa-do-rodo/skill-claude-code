@@ -2,6 +2,16 @@
 
 html { scroll-behavior: smooth; }
 
+/* Honor prefers-reduced-motion: silenciar animações pra usuários sensíveis */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
 body {
   background: var(--bg);
   color: var(--text);
@@ -62,6 +72,7 @@ section { padding: var(--space-20) 0; }
   font-weight: 900;
   line-height: 1.12;
   margin-bottom: var(--space-4);
+  text-wrap: balance;
 }
 
 .section-sub {
