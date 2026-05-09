@@ -1,0 +1,11 @@
+/* ============================================================
+   AnimatedCounter — span inline.
+   tabular-nums evita o número "dançar" durante a contagem
+   (cada dígito ocupa a mesma largura).
+   ============================================================ */
+
+.counter {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+  display: inline-block;
+}
