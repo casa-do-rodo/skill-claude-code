@@ -99,6 +99,7 @@
 .hero-stat strong {
   color: var(--cyan);
   font-size: 16px;
+  font-variant-numeric: tabular-nums;
 }
 
 .hero-visual {

@@ -422,6 +422,7 @@
   font-weight: 700;
   color: var(--text-faint);
   letter-spacing: 1px;
+  font-variant-numeric: tabular-nums;
 }
 .arsenal-chips {
   display: flex;
