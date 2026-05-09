@@ -1,0 +1,237 @@
+/* ============================================================
+   Clientes page — visão cliente-first dos spaces.
+   Mesmo grid 3-col de /projetos, card mais rico (status + last
+   activity + progress fill). Sem link wrapper: cards estáticos
+   por enquanto (drill-down volta via /projetos/[spaceId]).
+   ============================================================ */
+
+.page {
+  padding: var(--space-12) var(--space-8);
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+/* ---------- Header ---------- */
+
+.header {
+  margin-bottom: var(--space-12);
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 4vw, 44px);
+  font-weight: 700;
+  line-height: 1.05;
+  color: var(--text);
+  margin-bottom: var(--space-3);
+  text-wrap: balance;
+}
+
+.subtitle {
+  font-family: var(--font-body);
+  font-size: 15px;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+/* ---------- Grid ---------- */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-5);
+}
+
+/* ---------- Card ---------- */
+
+.card {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  /* transform animado mas sem will-change: hover é raro,
+     evita promote permanente de layer. */
+  transition:
+    border-color var(--trans),
+    transform var(--trans);
+}
+
+.card:hover {
+  border-color: var(--border-accent);
+  transform: translateY(-2px);
+}
+
+/* ---------- Card head: avatar + type badge ---------- */
+
+.cardHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--accent-dim);
+  border: 1px solid var(--border-accent);
+  color: var(--accent-text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 700;
+  /* tabular-nums só ajuda em letras + numerais misturados;
+     iniciais são sempre 1 char então é redundante mas inofensivo. */
+  font-variant-numeric: tabular-nums;
+}
+
+.typeBadge {
+  font-family: var(--font-display);
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: var(--radius-sm);
+  /* line-height 1 evita altura inflada do badge pequeno. */
+  line-height: 1;
+}
+
+.type_client {
+  background: var(--accent-dim);
+  color: var(--accent-text);
+  border: 1px solid var(--border-accent);
+}
+
+.type_internal {
+  background: var(--cyan-dim);
+  color: var(--cyan);
+  border: 1px solid rgba(157, 219, 255, 0.3);
+}
+
+/* ---------- Name ---------- */
+
+.name {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: 0.5px;
+  line-height: 1.15;
+  /* Sem margin: gap do .card já faz o trabalho. */
+  margin: 0;
+}
+
+/* ---------- Status badge ---------- */
+
+.statusBadge {
+  width: fit-content;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 500;
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
+  line-height: 1.2;
+}
+
+/* Cyan = neutral/cool (planejamento ainda não começou).
+   Accent (azul) = ativo/em curso.
+   Supabase green = completo/sucesso. */
+.status_planejamento {
+  background: rgba(157, 219, 255, 0.08);
+  color: var(--cyan);
+}
+
+.status_desenvolvimento {
+  background: var(--accent-dim);
+  color: var(--accent-text);
+}
+
+.status_entregue {
+  background: rgba(62, 207, 142, 0.12);
+  color: var(--supabase);
+}
+
+/* ---------- Stats grid ---------- */
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-3);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--border);
+  /* dl tem margin default no UA stylesheet — zera pra alinhar. */
+  margin: 0;
+}
+
+.stat dt {
+  font-family: var(--font-display);
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 2px;
+}
+
+.stat dd {
+  font-family: var(--font-display);
+  font-size: 20px;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+  margin: 0; /* dd default-margin reset */
+  line-height: 1.1;
+}
+
+/* ---------- Progress ---------- */
+
+.progressBar {
+  height: 4px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  background: var(--supabase);
+  /* Easing "expo out" customizado: arranque rápido, finish suave.
+     Combina com fill que aparece depois do dado carregar (Server Component). */
+  transition: width 600ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ---------- Footer / last activity ---------- */
+
+.footer {
+  margin-top: var(--space-2);
+}
+
+.lastActivity {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-faint);
+  letter-spacing: 0.3px;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  .page {
+    padding: var(--space-8) var(--space-5);
+  }
+  .header {
+    margin-bottom: var(--space-8);
+  }
+}
