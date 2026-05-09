@@ -220,30 +220,6 @@
     </div>
   </section>
 
-  <!-- DIVIDER: drip — Problema → Pipeline -->
-  <div class="section-divider-loader">
-    <svg class="l07" viewBox="0 0 200 200" width="170" height="170" aria-hidden="true">
-      <defs>
-        <filter id="goo-drip" x="-25%" y="-25%" width="150%" height="150%">
-          <feGaussianBlur in="SourceGraphic" stdDeviation="6"/>
-          <feColorMatrix values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 22 -11"/>
-        </filter>
-        <radialGradient id="drip-bg" cx="50%" cy="78%" r="40%">
-          <stop offset="0%"  stop-color="#2463EB" stop-opacity="0.2"/>
-          <stop offset="100%" stop-color="#2463EB" stop-opacity="0"/>
-        </radialGradient>
-      </defs>
-      <!-- background glow -->
-      <ellipse cx="100" cy="158" rx="70" ry="20" fill="url(#drip-bg)"/>
-      <!-- drip -->
-      <g filter="url(#goo-drip)">
-        <path class="drop" fill="#2463EB"
-          d="M100,38 C114,38 122,52 120,70 C118,84 112,92 100,92 C88,92 82,84 80,70 C78,52 86,38 100,38 Z"/>
-        <ellipse class="pool" fill="#2463EB" cx="100" cy="160" rx="42" ry="14"/>
-      </g>
-    </svg>
-  </div>
-
   <!-- O PIPELINE -->
   <section class="pipeline" id="pipeline">
     <div class="pipeline-bg"></div>
@@ -306,27 +282,6 @@
       <p class="pipeline-note reveal">Cada fase tem skills de suporte: debugging, TDD, code review, git worktrees.</p>
     </div>
   </section>
-
-  <!-- DIVIDER: breathing core — Pipeline → Antes/Depois -->
-  <div class="section-divider-loader">
-    <svg class="l03" viewBox="0 0 200 200" width="150" height="150" aria-hidden="true">
-      <defs>
-        <filter id="goo-core" x="-25%" y="-25%" width="150%" height="150%">
-          <feGaussianBlur in="SourceGraphic" stdDeviation="6"/>
-          <feColorMatrix values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 22 -11"/>
-        </filter>
-      </defs>
-      <g class="scaler">
-        <g class="rotor" filter="url(#goo-core)">
-          <circle fill="#2463EB" cx="100" cy="100" r="38"/>
-          <circle fill="#2463EB" cx="60"  cy="100" r="11"/>
-          <circle fill="#2463EB" cx="140" cy="100" r="11"/>
-          <circle fill="#2463EB" cx="100" cy="60"  r="11"/>
-          <circle fill="#2463EB" cx="100" cy="140" r="11"/>
-        </g>
-      </g>
-    </svg>
-  </div>
 
   <!-- ANTES / DEPOIS -->
   <section class="compare" id="compare">
@@ -549,26 +504,6 @@
 
     </div>
   </section>
-
-  <!-- DIVIDER: radar pulse — Arsenal → CTA -->
-  <div class="section-divider-loader">
-    <svg class="l15" viewBox="0 0 200 200" width="140" height="140" aria-hidden="true">
-      <defs>
-        <radialGradient id="pulse-bg" cx="50%" cy="50%" r="50%">
-          <stop offset="0%"   stop-color="#2463EB" stop-opacity="0.18"/>
-          <stop offset="100%" stop-color="#2463EB" stop-opacity="0"/>
-        </radialGradient>
-      </defs>
-      <!-- background glow -->
-      <circle cx="100" cy="100" r="80" fill="url(#pulse-bg)"/>
-      <!-- core: pulsing dot -->
-      <circle class="core" cx="100" cy="100" r="6" fill="#2463EB"/>
-      <!-- radar ping rings -->
-      <circle class="r r1" cx="100" cy="100" r="55" fill="none" stroke="#2463EB" stroke-width="2"/>
-      <circle class="r r2" cx="100" cy="100" r="55" fill="none" stroke="#2463EB" stroke-width="2"/>
-      <circle class="r r3" cx="100" cy="100" r="55" fill="none" stroke="#2463EB" stroke-width="2"/>
-    </svg>
-  </div>
 
   <!-- CTA -->
   <section class="cta-section" id="cta">
