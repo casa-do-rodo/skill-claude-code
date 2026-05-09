@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Skills — Claude Code Ecosystem</title>
+  <meta name="description" content="Skills transformam o Claude Code num pipeline de engenharia estruturado que produz resultados extraordinários.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tomorrow:wght@400;700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/sections.css">
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="container">
+      <div class="navbar-inner">
+        <a href="#" class="navbar-logo"><span class="logo-accent">//</span> SKILLS</a>
+        <ul class="navbar-links">
+          <li><a href="#pipeline">Pipeline</a></li>
+          <li><a href="#arsenal">Arsenal</a></li>
+          <li><a href="https://github.com/casa-do-rodo/skill-claude-code" target="_blank" class="btn-nav">GitHub →</a></li>
+        </ul>
+        <div class="navbar-mobile-toggle" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="hero-grid"></div>
+    <div class="hero-glow"></div>
+    <div class="container">
+      <div class="hero-content">
+
+        <!-- Left: text -->
+        <div class="hero-text">
+          <div class="hero-badge">Claude Code · Skills Ecosystem</div>
+          <h1 class="hero-headline">
+            <span class="hero-headline-l1">Seu AI dev</span>
+            <span class="hero-headline-l2">ficou mais</span>
+            <span class="hero-headline-l3">poderoso<span class="accent-period">.</span></span>
+          </h1>
+          <p class="hero-sub">
+            Skills transformam o Claude Code num pipeline de engenharia estruturado.
+            Cada decisão tem um processo. Cada sessão tem memória.
+          </p>
+          <div class="hero-actions">
+            <a href="#pipeline" class="btn btn-primary">Ver o Pipeline →</a>
+            <span class="hero-stat"><strong>22+</strong> skills instaladas</span>
+          </div>
+        </div>
+
+        <!-- Right: animated FacioFlow F (clip-path + light beads viajando pelas trilhas) -->
+        <div class="hero-visual">
+          <svg class="hero-f-svg" viewBox="700 720 600 620" width="340" height="350"
+               fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <!-- F path definitions (referenciadas por <use>) -->
+              <path id="fPathMain" d="M879.558 1154.17C877.769 1162.72 874.925 1170.66 874.014 1179.01C875.754 1179.71 876.66 1178.76 877.57 1178.12C885.019 1172.83 892.406 1167.44 899.892 1162.22C901.965 1160.77 902.998 1159 903.627 1156.4C910.205 1129.25 915.261 1101.61 923.617 1075.03C933.368 1044.01 954.794 1027.3 984.493 1022.26C986.365 1021.95 988.313 1022.1 990.226 1022.1C1028.25 1022.1 1066.27 1022.08 1104.3 1022.17C1107.76 1022.18 1110.13 1021.33 1112.26 1018.01C1118.2 1008.75 1130.87 1004.82 1141.85 1008.27C1152.46 1011.6 1160.55 1021.93 1161.32 1033.15C1162.58 1051.33 1152.99 1064.4 1136.19 1066.42C1126.9 1067.54 1118.83 1063.77 1112.73 1056.11C1110.73 1053.6 1108.72 1052.84 1105.85 1052.85C1069.1 1052.97 1032.35 1053 995.606 1053.07C973.94 1053.11 957.061 1066.55 950.893 1088.84C947.335 1101.7 944.008 1114.63 940.575 1127.53C940.195 1128.96 939.536 1130.37 940.382 1131.83C941.583 1132.62 942.314 1131.65 943.132 1131.07C953.577 1123.7 964 1116.28 974.481 1108.97C976.308 1107.69 977.269 1106.04 978.063 1103.9C983.461 1089.35 999.332 1084.54 1010.48 1094.28C1016.29 1099.35 1018 1106.54 1016.82 1114.28C1015.54 1122.63 1011.39 1129.09 1003.44 1130.96C998.333 1132.15 994.288 1134.89 990.199 1137.85C972.328 1150.79 954.517 1163.82 936.642 1176.75C914.315 1192.9 892.065 1209.18 869.566 1225.05C838.968 1246.63 809.267 1269.66 778.19 1290.47C774.829 1292.72 771.375 1294.84 767.449 1295.73C762.112 1296.93 759.287 1294.09 760.155 1288.28C761.997 1275.96 765.356 1264.01 768.216 1251.95C776.01 1219.06 783.978 1186.22 791.742 1153.32C799.882 1118.83 808.198 1084.38 815.79 1049.75C820.395 1028.74 827.142 1008.83 837.715 990.496C853.347 963.389 874.618 942.861 900.955 928.251C924.331 915.285 949.286 909.475 975.42 909.431C1042.03 909.319 1108.63 909.481 1175.24 909.408C1205.62 909.375 1230.2 887.731 1236.53 855.819C1237.65 850.198 1238.75 844.57 1240.04 838.993C1240.5 837.005 1240.23 835.519 1238.83 834.208C1238.45 833.849 1237.95 833.501 1237.77 833.032C1235.21 826.252 1229.9 826.744 1224.44 826.75C1142.14 826.847 1059.84 826.881 977.536 826.819C952.68 826.801 930.299 834.566 910.649 850.908C897.513 861.833 888.636 876.184 882.455 892.674C878.72 902.639 875.888 912.824 874.234 923.392C873.935 925.307 873.221 926.699 871.762 927.778C859.107 937.13 847.335 947.575 837.215 960.064C836.912 960.438 836.429 960.643 836.103 960.876C834.964 960.251 835.335 959.322 835.481 958.605C841.331 929.823 847.653 901.108 858.012 873.794C868.839 845.246 888.267 824.766 913.594 810.583C934.035 799.136 955.768 794.17 978.796 794.224C1062.37 794.42 1145.95 794.281 1229.52 794.393C1233.62 794.399 1236.54 793.22 1239.64 790.157C1248.45 781.441 1258.92 779.941 1269.9 784.555C1280.57 789.038 1285.92 798.078 1286.87 810.158C1287.82 822.165 1283.47 831.607 1274.11 838.137C1271.01 840.306 1269.77 843.052 1269.12 846.763C1266.04 864.616 1261.98 882.102 1252.3 897.472C1236.62 922.361 1215.1 936.613 1187.14 939.608C1179.49 940.427 1171.86 940.314 1164.21 940.32C1100.79 940.366 1037.37 939.76 973.966 940.59C930.16 941.163 894.779 961.225 868.716 999.283C857.377 1015.84 850.639 1034.66 846.389 1054.7C841.886 1075.93 836.738 1097 831.754 1118.1C823.546 1152.86 815.241 1187.59 806.99 1222.34C806.619 1223.9 806.388 1225.5 806.115 1226.96C807.922 1228.46 809.022 1227.16 810.117 1226.39C817.904 1220.9 825.652 1215.36 833.441 1209.88C835.026 1208.76 835.954 1207.34 836.422 1205.34C843.198 1176.41 850.019 1147.49 856.842 1118.58C862.571 1094.3 867.465 1069.76 874.372 1045.84C882.562 1017.48 898.906 995.723 922.968 980.704C937.537 971.611 953.288 967.46 969.895 966.115C990.683 964.433 1011.46 966.663 1032.24 966.2C1034.85 966.142 1037.13 965.667 1039.46 964.197C1046.83 959.548 1055.41 960.865 1061.23 967.205C1066.89 973.36 1068.11 983.396 1064.1 990.766C1059.88 998.526 1051.24 1002.86 1043.43 999.41C1035.86 996.071 1028.3 996.177 1020.58 996.326C1004.26 996.642 987.923 995.698 971.609 996.987C946.215 998.993 926.64 1011.61 912.442 1034.14C904.854 1046.18 901.599 1059.97 898.414 1073.84C892.678 1098.82 886.673 1123.72 880.784 1148.66C880.377 1150.38 880.004 1152.11 879.558 1154.17Z"/>
+              <path id="fPathDetail" d="M938.03 896.48C925.867 897.285 915.082 902.179 903.48 907.259C904.717 901.087 907.052 896.548 909.466 892.182C922.281 869.008 942.024 857.058 966.135 852.408C967.875 852.073 969.692 852.126 971.474 852.124C1014.35 852.124 1057.22 852.031 1100.09 852.065C1103.75 852.068 1107.04 851.368 1110.33 849.5C1118.33 844.961 1127.32 846.895 1132.85 853.983C1138.32 861.004 1138.9 872.262 1134.14 879.277C1128.91 886.989 1119.82 890.022 1111.7 886.136C1107.12 883.943 1102.57 883.234 1097.64 883.256C1054.77 883.449 1011.9 883.453 969.025 883.66C960.075 883.704 951.846 886.261 945.825 894.062C943.768 896.726 940.835 895.593 938.03 896.48Z"/>
+
+              <!-- Clip-path: confina os spotlights ao formato exato do F -->
+              <clipPath id="fClip">
+                <use href="#fPathMain"/>
+                <use href="#fPathDetail"/>
+              </clipPath>
+
+              <!-- Glow filter para os elementos animados -->
+              <filter id="trailGlow" x="-30%" y="-30%" width="160%" height="160%">
+                <feGaussianBlur stdDeviation="5"/>
+              </filter>
+
+              <!-- Orbit paths para os pontos orbitais (motion paths) -->
+              <path id="orbitOuter" fill="none"
+                d="M 744,1030 A 280,280 0 1,1 1304,1030 A 280,280 0 1,1 744,1030"/>
+              <path id="orbitInner" fill="none"
+                d="M 799,1030 A 225,225 0 1,0 1249,1030 A 225,225 0 1,0 799,1030"/>
+
+              <!-- Ring fade mask -->
+              <linearGradient id="rf" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%"   stop-color="white" stop-opacity="0"/>
+                <stop offset="22%"  stop-color="white" stop-opacity="1"/>
+                <stop offset="78%"  stop-color="white" stop-opacity="1"/>
+                <stop offset="100%" stop-color="white" stop-opacity="0"/>
+              </linearGradient>
+              <mask id="rm"><rect x="600" y="620" width="800" height="800" fill="url(#rf)"/></mask>
+            </defs>
+
+            <!-- Outer dashed orbit ring (lento, horário) -->
+            <g mask="url(#rm)">
+              <g style="transform-origin:1024px 1030px;transform-box:view-box;animation:ring-spin 22s linear infinite">
+                <circle cx="1024" cy="1030" r="280"
+                  fill="none" stroke="rgba(36,99,235,0.32)" stroke-width="2.5"
+                  stroke-dasharray="22 16"/>
+              </g>
+            </g>
+
+            <!-- Inner orbit ring (rápido, anti-horário, mais fino) -->
+            <g mask="url(#rm)">
+              <g style="transform-origin:1024px 1030px;transform-box:view-box;animation:ring-spin-rev 14s linear infinite">
+                <circle cx="1024" cy="1030" r="225"
+                  fill="none" stroke="rgba(36,99,235,0.22)" stroke-width="1.5"
+                  stroke-dasharray="6 12"/>
+              </g>
+            </g>
+
+            <!-- F base: sempre visível, mais sólido -->
+            <g fill="rgba(125,180,255,0.7)">
+              <use href="#fPathMain"/>
+              <use href="#fPathDetail"/>
+            </g>
+
+            <!-- B: F glowing from within - 3 ondas pulsantes saem dos terminals do F -->
+            <g clip-path="url(#fClip)">
+              <!-- Onda 1: emerge do V-point -->
+              <circle cx="790" cy="1280" r="20" fill="none" stroke="#9DDBFF" stroke-width="34">
+                <animate attributeName="r" from="10" to="380" dur="4s" repeatCount="indefinite"/>
+                <animate attributeName="opacity" values="0;0.65;0.3;0" keyTimes="0;0.2;0.7;1" dur="4s" repeatCount="indefinite"/>
+                <animate attributeName="stroke-width" from="36" to="4" dur="4s" repeatCount="indefinite"/>
+              </circle>
+              <!-- Onda 2: emerge do top arm terminal -->
+              <circle cx="1255" cy="830" r="20" fill="none" stroke="#9DDBFF" stroke-width="34" opacity="0">
+                <animate attributeName="r" from="10" to="380" dur="4s" begin="-1.3s" repeatCount="indefinite"/>
+                <animate attributeName="opacity" values="0;0.65;0.3;0" keyTimes="0;0.2;0.7;1" dur="4s" begin="-1.3s" repeatCount="indefinite"/>
+                <animate attributeName="stroke-width" from="36" to="4" dur="4s" begin="-1.3s" repeatCount="indefinite"/>
+              </circle>
+              <!-- Onda 3: emerge do middle arm terminal -->
+              <circle cx="1190" cy="1090" r="20" fill="none" stroke="#9DDBFF" stroke-width="34" opacity="0">
+                <animate attributeName="r" from="10" to="380" dur="4s" begin="-2.7s" repeatCount="indefinite"/>
+                <animate attributeName="opacity" values="0;0.65;0.3;0" keyTimes="0;0.2;0.7;1" dur="4s" begin="-2.7s" repeatCount="indefinite"/>
+                <animate attributeName="stroke-width" from="36" to="4" dur="4s" begin="-2.7s" repeatCount="indefinite"/>
+              </circle>
+            </g>
+
+            <!-- A: Orbital dots viajando ao redor do F nos 2 anéis -->
+            <g filter="url(#trailGlow)">
+              <!-- Outer ring: 2 dots em posições opostas (horário, 14s) -->
+              <circle cx="0" cy="0" r="6" fill="#9DDBFF">
+                <animateMotion dur="14s" repeatCount="indefinite" rotate="0">
+                  <mpath href="#orbitOuter"/>
+                </animateMotion>
+              </circle>
+              <circle cx="0" cy="0" r="4" fill="#9DDBFF" opacity="0.7">
+                <animateMotion dur="14s" begin="-7s" repeatCount="indefinite" rotate="0">
+                  <mpath href="#orbitOuter"/>
+                </animateMotion>
+              </circle>
+              <!-- Inner ring: 2 dots opostos (anti-horário, 9s) -->
+              <circle cx="0" cy="0" r="5" fill="#9DDBFF">
+                <animateMotion dur="9s" repeatCount="indefinite" rotate="0">
+                  <mpath href="#orbitInner"/>
+                </animateMotion>
+              </circle>
+              <circle cx="0" cy="0" r="3" fill="#9DDBFF" opacity="0.6">
+                <animateMotion dur="9s" begin="-4.5s" repeatCount="indefinite" rotate="0">
+                  <mpath href="#orbitInner"/>
+                </animateMotion>
+              </circle>
+            </g>
+
+          </svg>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- O PROBLEMA -->
+  <section class="problema" id="problema">
+    <div class="container">
+      <div class="reveal">
+        <span class="eyebrow">01 · O Problema</span>
+        <h2 class="section-title">AI sem estrutura não escala.</h2>
+        <p class="section-sub">
+          Sem um pipeline definido, cada sessão recomeça do zero e o output reflete isso.
+        </p>
+      </div>
+      <div class="problema-grid">
+        <div class="prob-card reveal reveal-d1">
+          <div class="prob-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="18" height="18" rx="2"/>
+              <line x1="9" y1="9" x2="15" y2="15"/>
+              <line x1="15" y1="9" x2="9" y2="15"/>
+            </svg>
+          </div>
+          <div class="prob-title">Output genérico</div>
+          <div class="prob-desc">Respostas sem contexto do projeto, sem identidade, sem consistência entre sessões.</div>
+        </div>
+        <div class="prob-card reveal reveal-d2">
+          <div class="prob-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <polyline points="12 6 12 12 16 14"/>
+            </svg>
+          </div>
+          <div class="prob-title">Sem processo</div>
+          <div class="prob-desc">Cada sessão recomeça do zero. Sem etapas definidas, sem critérios de qualidade, sem disciplina.</div>
+        </div>
+        <div class="prob-card reveal reveal-d3">
+          <div class="prob-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <ellipse cx="12" cy="5" rx="9" ry="3"/>
+              <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/>
+              <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
+              <line x1="3" y1="5" x2="21" y2="19" stroke-dasharray="3 3"/>
+            </svg>
+          </div>
+          <div class="prob-title">Sem memória</div>
+          <div class="prob-desc">O conhecimento do projeto — decisões, padrões, contexto — se perde quando a janela fecha.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DIVIDER: drip — Problema → Pipeline -->
+  <div class="section-divider-loader">
+    <svg class="l07" viewBox="0 0 200 200" width="170" height="170" aria-hidden="true">
+      <defs>
+        <filter id="goo-drip" x="-25%" y="-25%" width="150%" height="150%">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="6"/>
+          <feColorMatrix values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 22 -11"/>
+        </filter>
+        <radialGradient id="drip-bg" cx="50%" cy="78%" r="40%">
+          <stop offset="0%"  stop-color="#2463EB" stop-opacity="0.2"/>
+          <stop offset="100%" stop-color="#2463EB" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+      <!-- background glow -->
+      <ellipse cx="100" cy="158" rx="70" ry="20" fill="url(#drip-bg)"/>
+      <!-- drip -->
+      <g filter="url(#goo-drip)">
+        <path class="drop" fill="#2463EB"
+          d="M100,38 C114,38 122,52 120,70 C118,84 112,92 100,92 C88,92 82,84 80,70 C78,52 86,38 100,38 Z"/>
+        <ellipse class="pool" fill="#2463EB" cx="100" cy="160" rx="42" ry="14"/>
+      </g>
+    </svg>
+  </div>
+
+  <!-- O PIPELINE -->
+  <section class="pipeline" id="pipeline">
+    <div class="pipeline-bg"></div>
+    <div class="container">
+      <div class="pipeline-header reveal">
+        <span class="eyebrow">02 · O Pipeline</span>
+        <h2 class="section-title">Cada fase tem uma skill.</h2>
+        <p class="section-sub">
+          Um fluxo estruturado do conceito ao código. Skills especializadas orquestram cada etapa.
+        </p>
+      </div>
+      <div class="pipeline-flow">
+        <div class="pipe-node reveal reveal-d1">
+          <span class="pipe-node-step">01</span>
+          <div class="pipe-node-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+            </svg>
+          </div>
+          <div class="pipe-node-name">brainstorming</div>
+        </div>
+        <div class="pipe-connector reveal reveal-d1">›</div>
+        <div class="pipe-node reveal reveal-d2">
+          <span class="pipe-node-step">02</span>
+          <div class="pipe-node-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="12 2 2 7 12 12 22 7 12 2"/>
+              <polyline points="2 17 12 22 22 17"/>
+              <polyline points="2 12 12 17 22 12"/>
+            </svg>
+          </div>
+          <div class="pipe-node-name">frontend-design</div>
+        </div>
+        <div class="pipe-connector reveal reveal-d2">›</div>
+        <div class="pipe-node reveal reveal-d3">
+          <span class="pipe-node-step">03</span>
+          <div class="pipe-node-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="8" y1="6" x2="21" y2="6"/>
+              <line x1="8" y1="12" x2="21" y2="12"/>
+              <line x1="8" y1="18" x2="21" y2="18"/>
+              <line x1="3" y1="6" x2="3.01" y2="6"/>
+              <line x1="3" y1="12" x2="3.01" y2="12"/>
+              <line x1="3" y1="18" x2="3.01" y2="18"/>
+            </svg>
+          </div>
+          <div class="pipe-node-name">writing-plans</div>
+        </div>
+        <div class="pipe-connector reveal reveal-d3">›</div>
+        <div class="pipe-node reveal reveal-d4">
+          <span class="pipe-node-step">04</span>
+          <div class="pipe-node-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+            </svg>
+          </div>
+          <div class="pipe-node-name">execução</div>
+        </div>
+      </div>
+      <p class="pipeline-note reveal">Cada fase tem skills de suporte: debugging, TDD, code review, git worktrees.</p>
+    </div>
+  </section>
+
+  <!-- DIVIDER: breathing core — Pipeline → Antes/Depois -->
+  <div class="section-divider-loader">
+    <svg class="l03" viewBox="0 0 200 200" width="150" height="150" aria-hidden="true">
+      <defs>
+        <filter id="goo-core" x="-25%" y="-25%" width="150%" height="150%">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="6"/>
+          <feColorMatrix values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 22 -11"/>
+        </filter>
+      </defs>
+      <g class="scaler">
+        <g class="rotor" filter="url(#goo-core)">
+          <circle fill="#2463EB" cx="100" cy="100" r="38"/>
+          <circle fill="#2463EB" cx="60"  cy="100" r="11"/>
+          <circle fill="#2463EB" cx="140" cy="100" r="11"/>
+          <circle fill="#2463EB" cx="100" cy="60"  r="11"/>
+          <circle fill="#2463EB" cx="100" cy="140" r="11"/>
+        </g>
+      </g>
+    </svg>
+  </div>
+
+  <!-- ANTES / DEPOIS -->
+  <section class="compare" id="compare">
+    <div class="container">
+      <div class="compare-header reveal">
+        <span class="eyebrow">03 · A Evidência</span>
+        <h2 class="section-title">A diferença em prática.</h2>
+        <p class="section-sub">
+          O mesmo briefing. O mesmo modelo. Pipeline diferente — output completamente diferente.
+        </p>
+      </div>
+      <div class="compare-grid">
+
+        <!-- Before -->
+        <div class="reveal reveal-d1">
+          <div class="compare-label before">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            Sem skills — output direto
+          </div>
+          <div class="browser-window">
+            <div class="browser-bar before-bar">
+              <div class="browser-dots"><span></span><span></span><span></span></div>
+              <div class="browser-url">ikigai-v1.html</div>
+            </div>
+            <div class="browser-content-before">
+              <p class="before-h1">IKIGAI</p>
+              <p class="before-p">Find your reason for being. Ikigai is a Japanese concept that means "reason for being".</p>
+              <div class="before-btn">Learn More</div>
+              <hr class="before-divider">
+              <ul class="before-list">
+                <li>Discover your passion</li>
+                <li>Find your mission</li>
+                <li>Identify your vocation</li>
+                <li>Define your profession</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- After -->
+        <div class="reveal reveal-d2">
+          <div class="compare-label after">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Com pipeline completo
+          </div>
+          <div class="browser-window after-window">
+            <div class="browser-bar after-bar">
+              <div class="browser-dots"><span></span><span></span><span></span></div>
+              <div class="browser-url">ikigai-landing-w-skills/</div>
+            </div>
+            <div class="browser-content-after">
+              <div class="after-eyebrow">Japanese Philosophy · Since 794 AD</div>
+              <h2 class="after-h1">Find your<br>reason for<br><span class="ap">being.</span></h2>
+              <p class="after-p">A structured journey into purpose, passion, and the intersection of what the world needs.</p>
+              <div class="after-btn">Begin the Journey →</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- O ARSENAL -->
+  <section class="arsenal" id="arsenal">
+    <div class="container">
+
+      <div class="arsenal-header reveal">
+        <span class="eyebrow">04 · O Arsenal</span>
+        <h2 class="section-title">Skills instaladas.</h2>
+        <p class="section-sub">
+          Cada skill é um especialista. Elas se comunicam — algumas governam o processo,
+          outras plugam em fases específicas, outras estão sempre ativas como suporte.
+        </p>
+      </div>
+
+      <!-- Main pipeline flow -->
+      <div class="arsenal-pipeline reveal">
+        <span class="ap-phase">DESIGN</span>
+        <span class="ap-arrow">→</span>
+        <span class="ap-phase">PLAN</span>
+        <span class="ap-arrow">→</span>
+        <span class="ap-phase">BUILD</span>
+        <span class="ap-arrow">→</span>
+        <span class="ap-phase">REVIEW</span>
+        <span class="ap-arrow">→</span>
+        <span class="ap-phase">SHIP</span>
+        <span class="ap-label">Fluxo principal</span>
+      </div>
+
+      <div class="arsenal-cards">
+
+        <!-- Pipeline -->
+        <div class="arsenal-card c-blue arsenal-card-full reveal reveal-d1">
+          <div class="arsenal-card-header">
+            <div>
+              <div class="arsenal-card-name">Pipeline</div>
+              <div class="arsenal-card-phase">DESIGN → PLAN → BUILD → REVIEW → SHIP</div>
+            </div>
+            <div class="arsenal-card-count">07</div>
+          </div>
+          <div class="arsenal-card-desc">
+            <strong style="color:var(--text)">using-superpowers</strong> governa tudo — verifica qual skill aplicar antes de qualquer ação.
+            <strong style="color:var(--text)">brainstorming</strong> define o spec e produz o design doc.
+            <strong style="color:var(--text)">frontend-design</strong> refina a direção visual antes de codar.
+            <strong style="color:var(--text)">writing-plans</strong> decompõe em tasks executáveis.
+            <strong style="color:var(--text)">subagent-driven-development</strong> paraleliza a execução em subagentes frescos.
+            <strong style="color:var(--text)">verification-before-completion</strong> exige evidência antes de qualquer claim de "pronto".
+          </div>
+          <div class="arsenal-chips">
+            <span class="skill-chip chip-blue">using-superpowers</span>
+            <span class="skill-chip chip-blue">brainstorming</span>
+            <span class="skill-chip chip-blue">frontend-design</span>
+            <span class="skill-chip chip-blue">writing-plans</span>
+            <span class="skill-chip chip-blue">executing-plans</span>
+            <span class="skill-chip chip-blue">subagent-driven-development</span>
+            <span class="skill-chip chip-blue">verification-before-completion</span>
+          </div>
+        </div>
+
+        <!-- Qualidade -->
+        <div class="arsenal-card c-teal reveal reveal-d2">
+          <div class="arsenal-card-header">
+            <div>
+              <div class="arsenal-card-name">Qualidade</div>
+              <div class="arsenal-card-phase">Suporte transversal em todas as fases</div>
+            </div>
+            <div class="arsenal-card-count">06</div>
+          </div>
+          <div class="arsenal-card-desc">
+            Skills invocadas dentro das fases: <strong style="color:var(--text)">systematic-debugging</strong> antes de qualquer fix,
+            <strong style="color:var(--text)">tdd</strong> antes de qualquer feature,
+            <strong style="color:var(--text)">requesting-code-review</strong> após cada entrega.
+            <strong style="color:var(--text)">dispatching-parallel-agents</strong> resolve 2+ problemas independentes em paralelo.
+          </div>
+          <div class="arsenal-chips">
+            <span class="skill-chip chip-teal">systematic-debugging</span>
+            <span class="skill-chip chip-teal">test-driven-development</span>
+            <span class="skill-chip chip-teal">requesting-code-review</span>
+            <span class="skill-chip chip-teal">receiving-code-review</span>
+            <span class="skill-chip chip-teal">dispatching-parallel-agents</span>
+            <span class="skill-chip chip-teal">webapp-testing</span>
+          </div>
+        </div>
+
+        <!-- Supabase -->
+        <div class="arsenal-card c-purple reveal reveal-d3">
+          <div class="arsenal-card-header">
+            <div>
+              <div class="arsenal-card-name">Supabase</div>
+              <div class="arsenal-card-phase">Plug-in no BUILD phase</div>
+            </div>
+            <div class="arsenal-card-count">03</div>
+          </div>
+          <div class="arsenal-card-desc">
+            Qualquer task com banco de dados, auth ou RLS ativa <strong style="color:var(--text)">supabase</strong>.
+            Antes de aplicar qualquer migration, <strong style="color:var(--text)">supabase-schema-testing</strong>
+            aplica RED-GREEN-REFACTOR no schema.
+          </div>
+          <div class="arsenal-chips">
+            <span class="skill-chip chip-purple">supabase</span>
+            <span class="skill-chip chip-purple">supabase-postgres-best-practices</span>
+            <span class="skill-chip chip-purple">supabase-schema-testing</span>
+          </div>
+        </div>
+
+        <!-- n8n -->
+        <div class="arsenal-card c-amber reveal reveal-d3">
+          <div class="arsenal-card-header">
+            <div>
+              <div class="arsenal-card-name">n8n</div>
+              <div class="arsenal-card-phase">Plug-in no BUILD phase</div>
+            </div>
+            <div class="arsenal-card-count">07</div>
+          </div>
+          <div class="arsenal-card-desc">
+            Qualquer chamada de tool do MCP passa por <strong style="color:var(--text)">n8n-mcp-tools-expert</strong> primeiro.
+            <strong style="color:var(--text)">n8n-workflow-testing</strong> valida o workflow antes de ativar.
+            <strong style="color:var(--text)">n8n-expression-syntax</strong> garante que as expressões <code style="font-size:11px;color:var(--text-muted)">&#123;&#123;&#125;&#125;</code> estão corretas.
+          </div>
+          <div class="arsenal-chips">
+            <span class="skill-chip chip-amber">n8n-workflow-testing</span>
+            <span class="skill-chip chip-amber">n8n-workflow-patterns</span>
+            <span class="skill-chip chip-amber">n8n-mcp-tools-expert</span>
+            <span class="skill-chip chip-amber">n8n-node-configuration</span>
+            <span class="skill-chip chip-amber">n8n-validation-expert</span>
+            <span class="skill-chip chip-amber">n8n-expression-syntax</span>
+            <span class="skill-chip chip-amber">n8n-code-javascript</span>
+          </div>
+        </div>
+
+        <!-- Git & Meta -->
+        <div class="arsenal-card c-slate reveal reveal-d4">
+          <div class="arsenal-card-header">
+            <div>
+              <div class="arsenal-card-name">Git &amp; Memória</div>
+              <div class="arsenal-card-phase">Sempre disponíveis · contexto persistente</div>
+            </div>
+            <div class="arsenal-card-count">04</div>
+          </div>
+          <div class="arsenal-card-desc">
+            <strong style="color:var(--text)">checkpoint</strong> preserva o contexto mid-session antes do compaction.
+            <strong style="color:var(--text)">remember</strong> faz handoff entre sessões via <code style="font-size:11px;color:var(--text-muted)">.remember/</code>.
+            <strong style="color:var(--text)">using-git-worktrees</strong> isola o workspace antes de qualquer feature branch.
+          </div>
+          <div class="arsenal-chips">
+            <span class="skill-chip chip-slate">finishing-a-development-branch</span>
+            <span class="skill-chip chip-slate">using-git-worktrees</span>
+            <span class="skill-chip chip-slate">checkpoint</span>
+            <span class="skill-chip chip-slate">remember</span>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="arsenal-total reveal">
+        <strong>27</strong> skills · <strong>4</strong> fontes:
+        obra/superpowers · supabase/agent-skills · czlonkowski/n8n-skills · custom stack
+      </div>
+
+    </div>
+  </section>
+
+  <!-- DIVIDER: radar pulse — Arsenal → CTA -->
+  <div class="section-divider-loader">
+    <svg class="l15" viewBox="0 0 200 200" width="140" height="140" aria-hidden="true">
+      <defs>
+        <radialGradient id="pulse-bg" cx="50%" cy="50%" r="50%">
+          <stop offset="0%"   stop-color="#2463EB" stop-opacity="0.18"/>
+          <stop offset="100%" stop-color="#2463EB" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+      <!-- background glow -->
+      <circle cx="100" cy="100" r="80" fill="url(#pulse-bg)"/>
+      <!-- core: pulsing dot -->
+      <circle class="core" cx="100" cy="100" r="6" fill="#2463EB"/>
+      <!-- radar ping rings -->
+      <circle class="r r1" cx="100" cy="100" r="55" fill="none" stroke="#2463EB" stroke-width="2"/>
+      <circle class="r r2" cx="100" cy="100" r="55" fill="none" stroke="#2463EB" stroke-width="2"/>
+      <circle class="r r3" cx="100" cy="100" r="55" fill="none" stroke="#2463EB" stroke-width="2"/>
+    </svg>
+  </div>
+
+  <!-- CTA -->
+  <section class="cta-section" id="cta">
+    <div class="cta-glow"></div>
+    <div class="container">
+      <div class="cta-content">
+        <div class="reveal">
+          <span class="eyebrow">05 · Próximo passo</span>
+          <h2 class="cta-headline">Pronto pra elevar<br>seu AI dev?</h2>
+          <p class="cta-sub">
+            O repositório está aberto. As skills estão documentadas. O pipeline está testado.
+          </p>
+          <div class="cta-actions">
+            <a href="https://github.com/casa-do-rodo/skill-claude-code" target="_blank" class="btn btn-primary">Ver no GitHub →</a>
+            <a href="#arsenal" class="btn btn-secondary">Explorar Skills</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
