@@ -1,0 +1,90 @@
+/* ============================================================
+   Projetos page — lista de spaces (cards clicáveis).
+   Mesma cadência editorial da overview: header + grid de cards.
+   ============================================================ */
+
+.page {
+  padding: var(--space-12) var(--space-8);
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+/* ---------- Header ---------- */
+
+.header {
+  margin-bottom: var(--space-12);
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 4vw, 44px);
+  font-weight: 700;
+  line-height: 1.05;
+  color: var(--text);
+  margin-bottom: var(--space-3);
+  text-wrap: balance;
+}
+
+.subtitle {
+  font-family: var(--font-body);
+  font-size: 15px;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+/* ---------- Grid de cards ---------- */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-5);
+}
+
+/* Link envolve o card inteiro — desfaz estilo default de <a> e
+   aplica hover effects no card filho via combinator. */
+.cardLink {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  /* will-change opcional aqui: o lift é raro (só no hover), evita
+     promote indevido de layer. Transform fica direto. */
+  transition: transform var(--trans);
+  /* outline-offset positivo pra focus ring respirar do card */
+  outline-offset: 4px;
+  border-radius: var(--radius-md);
+}
+
+.cardLink:hover {
+  transform: translateY(-2px);
+}
+
+/* Hover do link aplica border-accent no card filho — mantém o card
+   "burro" (sem :hover próprio) e o efeito acoplado ao gesto clicar. */
+.cardLink:hover :global(article) {
+  border-color: var(--border-accent);
+}
+
+.cardLink:focus-visible {
+  outline: 2px solid var(--accent);
+}
+
+/* ---------- Responsive ---------- */
+/* 1024px: 3 cards viram 2x */
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* 600px: empilham + padding reduz */
+@media (max-width: 600px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  .page {
+    padding: var(--space-8) var(--space-5);
+  }
+  .header {
+    margin-bottom: var(--space-8);
+  }
+}

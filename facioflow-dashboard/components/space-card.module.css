@@ -1,0 +1,156 @@
+/* ============================================================
+   SpaceCard — card de space na grade `/projetos`.
+   Hover effect: border + lift, controlado pelo <Link> pai
+   (.cardLink:hover .card) em page.module.css. Aqui só transitions.
+   ============================================================ */
+
+.card {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  /* min-height: garante alinhamento entre cards quando nomes têm
+     comprimentos diferentes (1 linha vs. 2 linhas). */
+  min-height: 280px;
+  transition:
+    border-color var(--trans),
+    background-color var(--trans);
+}
+
+/* ---------- Head: avatar + badge ---------- */
+
+.head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-5);
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--accent-dim);
+  color: var(--accent-text);
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* line-height 1: garante centralização visual perfeita do glyph */
+  line-height: 1;
+  /* border sutil pra dar profundidade ao chip — fica mais "objeto" */
+  border: 1px solid var(--border-accent);
+}
+
+.badge {
+  font-family: var(--font-display);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: var(--radius-sm);
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.badge_client {
+  background: var(--accent-dim);
+  color: var(--accent-text);
+  border: 1px solid var(--border-accent);
+}
+
+.badge_internal {
+  background: var(--cyan-dim);
+  color: var(--cyan);
+  border: 1px solid rgba(157, 219, 255, 0.3);
+}
+
+/* ---------- Name ---------- */
+
+.name {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  line-height: 1.15;
+  color: var(--text);
+  margin-bottom: var(--space-5);
+  /* text-wrap balance evita única palavra órfã na 2ª linha */
+  text-wrap: balance;
+}
+
+/* ---------- Stats grid 3 cols ---------- */
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-4);
+  margin-bottom: var(--space-5);
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.stat dt {
+  font-family: var(--font-display);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  line-height: 1;
+}
+
+.stat dd {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+  line-height: 1.05;
+}
+
+/* ---------- Progress bar ---------- */
+
+.progressWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  /* margin-top auto empurra a progress pro bottom do card —
+     stats acima ficam top-aligned, progress sempre na base. */
+  margin-top: auto;
+}
+
+.progressBar {
+  height: 4px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  background: var(--supabase);
+  border-radius: 999px;
+  /* transition: animação suave de width quando re-renderiza
+     (ex: depois de sync), mas sem animação intrusiva on-load. */
+  transition: width 600ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.progressLabel {
+  font-family: var(--font-display);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+  line-height: 1.2;
+}

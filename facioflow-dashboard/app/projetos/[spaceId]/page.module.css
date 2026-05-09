@@ -1,0 +1,334 @@
+/* ============================================================
+   Drill-down de space — `/projetos/[spaceId]`.
+   Hierarquia visível: space header → KPIs → folders →
+   lists (expandable <details>) → tasks.
+   ============================================================ */
+
+.page {
+  padding: var(--space-12) var(--space-8);
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+/* ---------- Header ---------- */
+
+.header {
+  display: grid;
+  gap: var(--space-3);
+  margin-bottom: var(--space-10);
+  /* justify-items: start: cada child se ajusta ao próprio width
+     (o badge não cresce até o fim do container) */
+  justify-items: start;
+}
+
+.back {
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color var(--trans);
+  /* width fit-content garantido pelo justify-items: start no header */
+}
+
+.back:hover {
+  color: var(--accent-text);
+}
+
+.badge {
+  font-family: var(--font-display);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: var(--radius-sm);
+  line-height: 1.2;
+}
+
+.badge_client {
+  background: var(--accent-dim);
+  color: var(--accent-text);
+  border: 1px solid var(--border-accent);
+}
+
+.badge_internal {
+  background: var(--cyan-dim);
+  color: var(--cyan);
+  border: 1px solid rgba(157, 219, 255, 0.3);
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: clamp(32px, 5vw, 56px);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.5px;
+  color: var(--text);
+  text-wrap: balance;
+}
+
+.subtitle {
+  font-family: var(--font-body);
+  font-size: 15px;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+/* ---------- KPIs ---------- */
+
+.kpis {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-4);
+  margin-bottom: var(--space-12);
+}
+
+.kpi {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  transition: border-color var(--trans);
+}
+
+.kpi:hover {
+  border-color: var(--border-accent);
+}
+
+.kpiLabel {
+  font-family: var(--font-display);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  line-height: 1.2;
+}
+
+.kpiValue {
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+  line-height: 1.05;
+}
+
+/* ---------- Folders section ---------- */
+
+.foldersSection {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.folder {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: var(--space-6);
+}
+
+.folderHead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: var(--space-5);
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+.folderName {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: var(--text);
+  line-height: 1.15;
+}
+
+.folderMeta {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- Lists (expandable <details>) ---------- */
+
+.lists {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.listItem {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  transition: border-color var(--trans);
+}
+
+.listItem[open] {
+  border-color: var(--border-accent);
+}
+
+.listSummary {
+  padding: var(--space-3) var(--space-4);
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  /* user-select: none no summary evita texto selecionado quando o
+     usuário clica pra expandir (UX smooth) */
+  user-select: none;
+}
+
+/* Esconde marker default em todos os browsers */
+.listSummary::-webkit-details-marker {
+  display: none;
+}
+.listSummary::marker {
+  display: none;
+  content: "";
+}
+
+/* Triângulo custom — substitui o marker default por um glyph
+   alinhado com a tipografia geometric do dashboard. */
+.listSummary::before {
+  content: "▸";
+  display: inline-block;
+  margin-right: var(--space-2);
+  color: var(--text-muted);
+  transition: transform var(--trans);
+  font-size: 10px;
+  /* line-height: 1 + flex-shrink: 0 garante que o glyph não distorce
+     a baseline do summary inteiro */
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.listItem[open] .listSummary::before {
+  transform: rotate(90deg);
+  color: var(--accent-text);
+}
+
+.listName {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  flex: 1 1 auto;
+  /* min-width 0 + flex 1 → permite text-overflow se nome longo */
+  min-width: 0;
+}
+
+.listMeta {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-muted);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+  flex-shrink: 0;
+}
+
+/* ---------- Task inner list ---------- */
+
+.taskInner {
+  list-style: none;
+  margin: 0;
+  padding: var(--space-3) var(--space-4) var(--space-4);
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--border);
+}
+
+.taskItem {
+  padding: var(--space-2) 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  border-bottom: 1px solid var(--border);
+}
+
+.taskItem:last-child {
+  border-bottom: none;
+}
+
+.taskName {
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: var(--text);
+  text-decoration: none;
+  flex: 1 1 auto;
+  min-width: 0;
+  /* truncate em 1 linha */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  transition: color var(--trans);
+}
+
+a.taskName:hover {
+  color: var(--accent-text);
+}
+
+.taskEmpty {
+  padding: var(--space-3) var(--space-4) var(--space-4);
+  font-size: 12px;
+  font-style: italic;
+  color: var(--text-muted);
+  border-top: 1px solid var(--border);
+}
+
+/* ---------- Status badge ----------
+   Mesmo modelo do TaskList: cor única via --status-color, bg derivado
+   por color-mix. Mantém consistência visual entre overview e drill. */
+.statusBadge {
+  font-family: var(--font-display);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+  color: var(--status-color);
+  background: color-mix(in srgb, var(--status-color) 14%, transparent);
+  white-space: nowrap;
+  flex-shrink: 0;
+  line-height: 1.2;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 1024px) {
+  .kpis {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .page {
+    padding: var(--space-8) var(--space-5);
+  }
+  .kpis {
+    grid-template-columns: 1fr;
+  }
+  .header {
+    margin-bottom: var(--space-8);
+  }
+  .folderHead {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
