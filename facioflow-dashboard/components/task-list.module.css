@@ -1,0 +1,134 @@
+/* ============================================================
+   TaskList — bloco lista da overview ("atividade recente",
+   "próximas urgentes"). Item layout: nome + breadcrumb à esquerda,
+   status badge + priority dot à direita.
+   ============================================================ */
+
+.listContainer {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: var(--space-6);
+  /* min-height para alinhar dois lists lado a lado mesmo se um estiver vazio */
+  min-height: 320px;
+  display: flex;
+  flex-direction: column;
+}
+
+.listTitle {
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text);
+  margin-bottom: var(--space-4);
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding: var(--space-3) 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.item:last-child {
+  border-bottom: none;
+}
+
+.itemMain {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  /* min-width: 0 + flex: 1 → permite text-overflow no nome/breadcrumb sem
+     forçar o container a crescer. Crítico em flex layouts pra ellipsis funcionar. */
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+.itemName {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text);
+  text-decoration: none;
+  line-height: 1.3;
+  /* truncate em 1 linha — names podem ser longos */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  transition: color var(--trans);
+}
+
+a.itemName:hover {
+  color: var(--accent-text);
+}
+
+.itemBreadcrumb {
+  font-family: var(--font-body);
+  font-size: 11px;
+  color: var(--text-faint);
+  line-height: 1.3;
+  /* truncate breadcrumb também */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.itemMeta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex-shrink: 0;
+}
+
+/* ---------- Status badge ----------
+   Cor única passada via --status-color (CSS custom prop inline).
+   Background com 12% opacity, foreground full color → contraste WCAG ok
+   sobre bg-elevated escuro. */
+.statusBadge {
+  font-family: var(--font-display);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+  color: var(--status-color);
+  /* color-mix dá tinta clara translúcida sem precisar declarar variantes
+     específicas pra cada cor. Suporte: Chrome 111+, Firefox 113+, Safari 16.4+.
+     Fallback de transparent já é aceitável (texto colorido continua legível). */
+  background: color-mix(in srgb, var(--status-color) 14%, transparent);
+  white-space: nowrap;
+  line-height: 1.2;
+}
+
+/* ---------- Priority dot ---------- */
+.priorityDot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* ---------- Empty state ---------- */
+.empty {
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: var(--text-muted);
+  font-style: italic;
+  /* alinhar verticalmente com o título — usa o flex do container */
+  margin: auto 0;
+  text-align: center;
+}

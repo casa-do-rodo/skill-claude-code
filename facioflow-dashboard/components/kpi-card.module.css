@@ -1,0 +1,54 @@
+/* ============================================================
+   KpiCard — bloco numérico da overview.
+   Mantém grid alignment com font-variant-numeric: tabular-nums.
+   ============================================================ */
+
+.card {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  /* min-height fixo evita "pulo" entre cards quando uns têm hint e outros não. */
+  min-height: 124px;
+  transition: border-color var(--trans), background-color var(--trans);
+}
+
+.card:hover {
+  border-color: var(--border-accent);
+}
+
+.label {
+  font-family: var(--font-display);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2.4px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  /* line-height tight pra não competir com o value */
+  line-height: 1.2;
+}
+
+.value {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 3.5vw, 36px);
+  font-weight: 700;
+  line-height: 1.05;
+  color: var(--text);
+  /* tabular-nums: dígitos com largura fixa — animação do counter
+     não causa shift horizontal enquanto valor incrementa. */
+  font-variant-numeric: tabular-nums;
+  /* margin-top pra respirar do label, sem virar gap genérico */
+  margin-top: var(--space-1);
+}
+
+.hint {
+  font-family: var(--font-body);
+  font-size: 12px;
+  color: var(--text-muted);
+  line-height: 1.4;
+  /* margin-top automático via flex gap, mas damos buffer extra */
+  margin-top: auto;
+}
