@@ -108,34 +108,42 @@
         <p class="service-desc">Workflows que conectam ferramentas e eliminam tarefas manuais e repetitivas em qualquer área da operação. Vendas, marketing, financeiro, logística, RH — cada processo é mapeado, modelado e automatizado com gatilhos, validações e regras de negócio próprias da sua empresa, garantindo que o resultado seja consistente e auditável a cada execução.</p>
       </div>
       <div class="service-visual" aria-hidden="true">
-        <svg viewBox="0 0 250 200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+        <svg class="svc-1" viewBox="0 0 250 200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
           <!-- conector horizontal node 1 → node 2 -->
-          <line x1="60" y1="60" x2="100" y2="60" stroke="var(--border)" stroke-width="1.5" stroke-linecap="round"/>
+          <line class="anim-connector anim-connector-1" x1="60" y1="60" x2="100" y2="60" stroke="var(--border)" stroke-width="1.5" stroke-linecap="round"/>
           <!-- conector horizontal node 2 → node 3 (vai pra direita-baixo) -->
-          <line x1="160" y1="60" x2="190" y2="60" stroke="var(--border)" stroke-width="1.5" stroke-linecap="round"/>
-          <line x1="190" y1="60" x2="190" y2="140" stroke="var(--border)" stroke-width="1.5" stroke-linecap="round"/>
-          <line x1="190" y1="140" x2="160" y2="140" stroke="var(--border)" stroke-width="1.5" stroke-linecap="round"/>
+          <line class="anim-connector anim-connector-2" x1="160" y1="60" x2="190" y2="60" stroke="var(--border)" stroke-width="1.5" stroke-linecap="round"/>
+          <line class="anim-connector anim-connector-2" x1="190" y1="60" x2="190" y2="140" stroke="var(--border)" stroke-width="1.5" stroke-linecap="round"/>
+          <line class="anim-connector anim-connector-2" x1="190" y1="140" x2="160" y2="140" stroke="var(--border)" stroke-width="1.5" stroke-linecap="round"/>
           <!-- seta na ponta -->
-          <path d="M 165 137 L 158 140 L 165 143" stroke="var(--accent)" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <path class="anim-arrow" d="M 165 137 L 158 140 L 165 143" stroke="var(--accent)" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
 
           <!-- Node 1: Trigger -->
-          <rect x="20" y="42" width="40" height="36" rx="6" fill="var(--bg-surface)" stroke="var(--border)" stroke-width="1.5"/>
-          <circle cx="32" cy="60" r="3" fill="var(--accent)"/>
-          <line x1="40" y1="56" x2="52" y2="56" stroke="var(--text-muted)" stroke-width="1.5" stroke-linecap="round"/>
-          <line x1="40" y1="64" x2="48" y2="64" stroke="var(--text-faint)" stroke-width="1.5" stroke-linecap="round"/>
+          <g class="anim-node anim-node-1">
+            <rect x="20" y="42" width="40" height="36" rx="6" fill="var(--bg-surface)" stroke="var(--border)" stroke-width="1.5"/>
+            <circle cx="32" cy="60" r="3" fill="var(--accent)"/>
+            <line x1="40" y1="56" x2="52" y2="56" stroke="var(--text-muted)" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="40" y1="64" x2="48" y2="64" stroke="var(--text-faint)" stroke-width="1.5" stroke-linecap="round"/>
+          </g>
 
           <!-- Node 2: Process (centro, destacado com border accent) -->
-          <rect x="100" y="42" width="60" height="36" rx="6" fill="var(--bg-surface)" stroke="var(--accent)" stroke-width="1.5"/>
-          <line x1="112" y1="54" x2="148" y2="54" stroke="var(--text)" stroke-width="1.5" stroke-linecap="round" opacity="0.7"/>
-          <line x1="112" y1="62" x2="140" y2="62" stroke="var(--text-muted)" stroke-width="1.5" stroke-linecap="round"/>
-          <line x1="112" y1="70" x2="132" y2="70" stroke="var(--text-faint)" stroke-width="1.5" stroke-linecap="round"/>
+          <g class="anim-node anim-node-2">
+            <rect x="100" y="42" width="60" height="36" rx="6" fill="var(--bg-surface)" stroke="var(--accent)" stroke-width="1.5"/>
+            <line x1="112" y1="54" x2="148" y2="54" stroke="var(--text)" stroke-width="1.5" stroke-linecap="round" opacity="0.7"/>
+            <line x1="112" y1="62" x2="140" y2="62" stroke="var(--text-muted)" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="112" y1="70" x2="132" y2="70" stroke="var(--text-faint)" stroke-width="1.5" stroke-linecap="round"/>
+            <!-- Pulse glow no nó central (só visível após draw terminar) -->
+            <circle class="anim-pulse" cx="155" cy="47" r="3" fill="var(--accent)"/>
+          </g>
 
           <!-- Node 3: Output -->
-          <rect x="100" y="122" width="60" height="36" rx="6" fill="var(--bg-surface)" stroke="var(--border)" stroke-width="1.5"/>
-          <rect x="112" y="134" width="14" height="14" rx="2" fill="none" stroke="var(--accent)" stroke-width="1.5"/>
-          <path d="M 116 141 L 119 144 L 124 138" stroke="var(--accent)" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-          <line x1="132" y1="138" x2="152" y2="138" stroke="var(--text-muted)" stroke-width="1.5" stroke-linecap="round"/>
-          <line x1="132" y1="146" x2="146" y2="146" stroke="var(--text-faint)" stroke-width="1.5" stroke-linecap="round"/>
+          <g class="anim-node anim-node-3">
+            <rect x="100" y="122" width="60" height="36" rx="6" fill="var(--bg-surface)" stroke="var(--border)" stroke-width="1.5"/>
+            <rect x="112" y="134" width="14" height="14" rx="2" fill="none" stroke="var(--accent)" stroke-width="1.5"/>
+            <path d="M 116 141 L 119 144 L 124 138" stroke="var(--accent)" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            <line x1="132" y1="138" x2="152" y2="138" stroke="var(--text-muted)" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="132" y1="146" x2="146" y2="146" stroke="var(--text-faint)" stroke-width="1.5" stroke-linecap="round"/>
+          </g>
         </svg>
       </div>
     </article>
@@ -147,25 +155,38 @@
         <p class="service-desc">Chatbots e agentes inteligentes em WhatsApp, site e canais internos, com contexto próprio do seu negócio via arquitetura RAG. Aplicações que vão de qualificação de leads e suporte ao cliente até processos de RH e atendimento interno.</p>
       </div>
       <div class="service-visual" aria-hidden="true">
-        <svg viewBox="0 0 250 200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+        <svg class="svc-2" viewBox="0 0 250 200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
           <!-- Bubble 1 (esq, com check) -->
-          <rect x="20" y="28" width="130" height="38" rx="8" fill="var(--bg-surface)" stroke="var(--border)" stroke-width="1.5"/>
-          <line x1="32" y1="42" x2="120" y2="42" stroke="var(--text-muted)" stroke-width="1.5" stroke-linecap="round"/>
-          <line x1="32" y1="52" x2="100" y2="52" stroke="var(--text-faint)" stroke-width="1.5" stroke-linecap="round"/>
-          <!-- check -->
-          <path d="M 132 58 L 136 62 L 142 54" stroke="var(--accent)" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <g class="anim-bubble anim-bubble-1">
+            <rect x="20" y="28" width="130" height="38" rx="8" fill="var(--bg-surface)" stroke="var(--border)" stroke-width="1.5"/>
+            <line x1="32" y1="42" x2="120" y2="42" stroke="var(--text-muted)" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="32" y1="52" x2="100" y2="52" stroke="var(--text-faint)" stroke-width="1.5" stroke-linecap="round"/>
+            <!-- check -->
+            <path class="anim-check anim-check-1" d="M 132 58 L 136 62 L 142 54" stroke="var(--accent)" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          </g>
 
           <!-- Bubble 2 (centro/dir, destaque accent-dim) -->
-          <rect x="100" y="80" width="130" height="38" rx="8" fill="var(--accent-dim)" stroke="var(--border-accent)" stroke-width="1.5"/>
-          <line x1="112" y1="94" x2="218" y2="94" stroke="var(--text)" stroke-width="1.5" stroke-linecap="round" opacity="0.8"/>
-          <line x1="112" y1="104" x2="200" y2="104" stroke="var(--text-muted)" stroke-width="1.5" stroke-linecap="round"/>
+          <g class="anim-bubble anim-bubble-2">
+            <rect x="100" y="80" width="130" height="38" rx="8" fill="var(--accent-dim)" stroke="var(--border-accent)" stroke-width="1.5"/>
+            <line x1="112" y1="94" x2="218" y2="94" stroke="var(--text)" stroke-width="1.5" stroke-linecap="round" opacity="0.8"/>
+            <line x1="112" y1="104" x2="200" y2="104" stroke="var(--text-muted)" stroke-width="1.5" stroke-linecap="round"/>
+          </g>
+
+          <!-- Typing indicator (3 dots), aparece antes do bubble 3 e some quando ele entra -->
+          <g class="anim-typing">
+            <circle class="anim-typing-dot anim-typing-dot-1" cx="34" cy="151" r="3" fill="var(--text-muted)"/>
+            <circle class="anim-typing-dot anim-typing-dot-2" cx="46" cy="151" r="3" fill="var(--text-muted)"/>
+            <circle class="anim-typing-dot anim-typing-dot-3" cx="58" cy="151" r="3" fill="var(--text-muted)"/>
+          </g>
 
           <!-- Bubble 3 (esq, com check) -->
-          <rect x="20" y="132" width="110" height="38" rx="8" fill="var(--bg-surface)" stroke="var(--border)" stroke-width="1.5"/>
-          <line x1="32" y1="146" x2="106" y2="146" stroke="var(--text-muted)" stroke-width="1.5" stroke-linecap="round"/>
-          <line x1="32" y1="156" x2="86" y2="156" stroke="var(--text-faint)" stroke-width="1.5" stroke-linecap="round"/>
-          <!-- check -->
-          <path d="M 112 162 L 116 166 L 122 158" stroke="var(--accent)" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <g class="anim-bubble anim-bubble-3">
+            <rect x="20" y="132" width="110" height="38" rx="8" fill="var(--bg-surface)" stroke="var(--border)" stroke-width="1.5"/>
+            <line x1="32" y1="146" x2="106" y2="146" stroke="var(--text-muted)" stroke-width="1.5" stroke-linecap="round"/>
+            <line x1="32" y1="156" x2="86" y2="156" stroke="var(--text-faint)" stroke-width="1.5" stroke-linecap="round"/>
+            <!-- check -->
+            <path class="anim-check anim-check-3" d="M 112 162 L 116 166 L 122 158" stroke="var(--accent)" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          </g>
         </svg>
       </div>
     </article>
@@ -177,7 +198,7 @@
         <p class="service-desc">Painéis personalizados que centralizam indicadores de marketing, vendas, operação e atendimento em uma única interface. Os dados são consolidados a partir das ferramentas que você já usa, atualizados automaticamente e apresentados em visualizações que facilitam a tomada de decisão.</p>
       </div>
       <div class="service-visual" aria-hidden="true">
-        <svg viewBox="0 0 250 200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+        <svg class="svc-3" viewBox="0 0 250 200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
           <!-- Grid lines (sutis) -->
           <line x1="20" y1="60" x2="230" y2="60" stroke="var(--border)" stroke-width="1" stroke-dasharray="2 4"/>
           <line x1="20" y1="100" x2="230" y2="100" stroke="var(--border)" stroke-width="1" stroke-dasharray="2 4"/>
@@ -187,18 +208,18 @@
 
           <!-- 4 barras (alturas: 28%, 45%, 62%, 80% — base em 130px de altura) -->
           <!-- Bar 1: 28% = 36px -->
-          <rect x="40" y="134" width="32" height="36" rx="3" fill="var(--bg-surface)" stroke="var(--border)" stroke-width="1.5"/>
+          <rect class="anim-bar anim-bar-1" x="40" y="134" width="32" height="36" rx="3" fill="var(--bg-surface)" stroke="var(--border)" stroke-width="1.5"/>
           <!-- Bar 2: 45% = 58px -->
-          <rect x="84" y="112" width="32" height="58" rx="3" fill="var(--bg-surface)" stroke="var(--border)" stroke-width="1.5"/>
+          <rect class="anim-bar anim-bar-2" x="84" y="112" width="32" height="58" rx="3" fill="var(--bg-surface)" stroke="var(--border)" stroke-width="1.5"/>
           <!-- Bar 3: 62% = 80px -->
-          <rect x="128" y="90" width="32" height="80" rx="3" fill="var(--bg-surface)" stroke="var(--border)" stroke-width="1.5"/>
+          <rect class="anim-bar anim-bar-3" x="128" y="90" width="32" height="80" rx="3" fill="var(--bg-surface)" stroke="var(--border)" stroke-width="1.5"/>
           <!-- Bar 4: 80% = 104px (destaque accent) -->
-          <rect x="172" y="66" width="32" height="104" rx="3" fill="var(--accent-dim)" stroke="var(--accent)" stroke-width="1.5"/>
+          <rect class="anim-bar anim-bar-4" x="172" y="66" width="32" height="104" rx="3" fill="var(--accent-dim)" stroke="var(--accent)" stroke-width="1.5"/>
 
           <!-- Número grande "+27%" no canto superior esquerdo -->
-          <text x="20" y="38" font-family="Tomorrow, sans-serif" font-weight="700" font-size="26" fill="var(--accent)" letter-spacing="-0.5">+27%</text>
+          <text id="dashboard-pct" x="20" y="38" font-family="Tomorrow, sans-serif" font-weight="700" font-size="26" fill="var(--accent)" letter-spacing="-0.5">+0%</text>
           <!-- Label pequeno abaixo -->
-          <text x="20" y="52" font-family="Inter, sans-serif" font-weight="500" font-size="9" fill="var(--text-muted)" letter-spacing="1">CONVERSÃO</text>
+          <text class="anim-dash-label" x="20" y="52" font-family="Inter, sans-serif" font-weight="500" font-size="9" fill="var(--text-muted)" letter-spacing="1">CONVERSÃO</text>
         </svg>
       </div>
     </article>
@@ -210,7 +231,7 @@
         <p class="service-desc">Quando o que sua operação precisa não cabe em ferramenta de prateleira, desenvolvemos a plataforma do zero. Aplicações web completas, com autenticação, banco de dados, controle de permissões e integração nativa com seus workflows. Construídas com stack moderna e arquitetura escalável.</p>
       </div>
       <div class="service-visual" aria-hidden="true">
-        <svg viewBox="0 0 250 200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+        <svg class="svc-4" viewBox="0 0 250 200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
           <!-- Window frame -->
           <rect x="20" y="20" width="210" height="160" rx="8" fill="var(--bg-surface)" stroke="var(--border)" stroke-width="1.5"/>
           <!-- Title bar separator -->
@@ -222,32 +243,44 @@
 
           <!-- Linhas de código (rects de larguras variadas, syntax highlighting fake) -->
           <!-- Linha 1: keyword + var name -->
-          <rect x="36" y="60" width="28" height="6" rx="2" fill="var(--accent)" opacity="0.85"/>
-          <rect x="68" y="60" width="44" height="6" rx="2" fill="var(--text)" opacity="0.7"/>
-          <rect x="116" y="60" width="14" height="6" rx="2" fill="var(--text-muted)"/>
+          <g class="anim-line anim-line-1">
+            <rect x="36" y="60" width="28" height="6" rx="2" fill="var(--accent)" opacity="0.85"/>
+            <rect x="68" y="60" width="44" height="6" rx="2" fill="var(--text)" opacity="0.7"/>
+            <rect x="116" y="60" width="14" height="6" rx="2" fill="var(--text-muted)"/>
+          </g>
 
           <!-- Linha 2: indented, com string -->
-          <rect x="50" y="76" width="36" height="6" rx="2" fill="var(--text-muted)"/>
-          <rect x="90" y="76" width="60" height="6" rx="2" fill="var(--accent)" opacity="0.6"/>
+          <g class="anim-line anim-line-2">
+            <rect x="50" y="76" width="36" height="6" rx="2" fill="var(--text-muted)"/>
+            <rect x="90" y="76" width="60" height="6" rx="2" fill="var(--accent)" opacity="0.6"/>
+          </g>
 
           <!-- Linha 3: indented, function call -->
-          <rect x="50" y="92" width="22" height="6" rx="2" fill="var(--text)" opacity="0.85"/>
-          <rect x="76" y="92" width="50" height="6" rx="2" fill="var(--text-muted)"/>
-          <rect x="130" y="92" width="32" height="6" rx="2" fill="var(--accent)" opacity="0.7"/>
+          <g class="anim-line anim-line-3">
+            <rect x="50" y="92" width="22" height="6" rx="2" fill="var(--text)" opacity="0.85"/>
+            <rect x="76" y="92" width="50" height="6" rx="2" fill="var(--text-muted)"/>
+            <rect x="130" y="92" width="32" height="6" rx="2" fill="var(--accent)" opacity="0.7"/>
+          </g>
 
           <!-- Linha 4: blank-ish, comment -->
-          <rect x="50" y="108" width="80" height="6" rx="2" fill="var(--text-faint)"/>
+          <g class="anim-line anim-line-4">
+            <rect x="50" y="108" width="80" height="6" rx="2" fill="var(--text-faint)"/>
+          </g>
 
           <!-- Linha 5: function close -->
-          <rect x="50" y="124" width="40" height="6" rx="2" fill="var(--accent)" opacity="0.85"/>
-          <rect x="94" y="124" width="28" height="6" rx="2" fill="var(--text)" opacity="0.6"/>
+          <g class="anim-line anim-line-5">
+            <rect x="50" y="124" width="40" height="6" rx="2" fill="var(--accent)" opacity="0.85"/>
+            <rect x="94" y="124" width="28" height="6" rx="2" fill="var(--text)" opacity="0.6"/>
+          </g>
 
           <!-- Linha 6 -->
-          <rect x="36" y="140" width="18" height="6" rx="2" fill="var(--text-muted)"/>
-          <rect x="58" y="140" width="56" height="6" rx="2" fill="var(--text)" opacity="0.7"/>
+          <g class="anim-line anim-line-6">
+            <rect x="36" y="140" width="18" height="6" rx="2" fill="var(--text-muted)"/>
+            <rect x="58" y="140" width="56" height="6" rx="2" fill="var(--text)" opacity="0.7"/>
+          </g>
 
           <!-- Cursor blink (linha vertical fina) -->
-          <rect x="118" y="138" width="1.5" height="10" fill="var(--accent)"/>
+          <rect class="anim-cursor" x="118" y="138" width="1.5" height="10" fill="var(--accent)"/>
         </svg>
       </div>
     </article>
