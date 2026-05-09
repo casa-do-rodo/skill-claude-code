@@ -95,6 +95,8 @@
     height: 24px;
     align-self: center;
   }
+  /* radius menor em mobile p/ parecer continuum vertical */
+  .process-step { border-radius: var(--radius-sm); }
 }
 
 /* ── BENEFITS ─────────────────────── */
@@ -104,7 +106,7 @@
 .benefits-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-4);
+  gap: var(--space-5);
   margin-top: var(--space-12);
 }
 /* .benefit-card--featured tem grid-column: span 2 em components.css */

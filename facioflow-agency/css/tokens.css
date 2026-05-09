@@ -9,6 +9,9 @@
   --accent-dim:      rgba(36, 99, 235, 0.12);
   --accent-glow:     rgba(36, 99, 235, 0.24);
 
+  --accent-hover:    #1D4FD8;
+  --accent-text:     #4F84F0; /* accent clarificado para texto pequeno (WCAG AA sobre bg-elevated) */
+
   /* Text */
   --text:            #FFFFFF;
   --text-muted:      #6B7280;

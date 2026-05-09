@@ -72,7 +72,8 @@
   color: var(--text);
 }
 .navbar-links .btn-nav {
-  padding: 7px 16px;
+  padding: var(--space-2) var(--space-4);
+  font-size: 11px;
   border: 1px solid var(--border);
   border-radius: var(--radius);
   color: var(--text);
@@ -146,13 +147,13 @@
   color: #fff;
 }
 .btn-primary:hover {
-  /* Tom mais escuro do accent pra hover — não há token */
-  background: #1d4fd8;
+  background: var(--accent-hover);
   transform: translateY(-1px);
   box-shadow: 0 4px 24px var(--accent-glow);
 }
 .btn-primary:active {
   transform: translateY(0);
+  box-shadow: 0 2px 12px var(--accent-glow);
 }
 .btn-ghost {
   background: transparent;
@@ -233,14 +234,14 @@
 }
 .process-step--accent {
   background: var(--accent-dim);
-  border-color: var(--border-accent);
+  border-color: var(--accent);
 }
 .process-connector {
   flex-shrink: 0;
   align-self: center;
   width: 32px;
   height: 1px;
-  background: var(--border);
+  background: rgba(255, 255, 255, 0.16);
 }
 .process-step-number {
   font-family: var(--font-display);
@@ -270,16 +271,19 @@
   background: var(--bg-elevated);
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
-  transition: border-color var(--trans);
+  transition: border-color var(--trans), transform var(--trans), box-shadow var(--trans);
 }
 .benefit-card:hover {
   border-color: var(--border-accent);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
 }
 .benefit-card--featured {
   grid-column: span 2;
   padding: var(--space-10);
   background: var(--bg-surface);
   border-color: var(--border-accent);
+  border-radius: var(--radius-lg);
 }
 .benefit-title {
   font-family: var(--font-display);
@@ -333,7 +337,7 @@
   letter-spacing: 2px;
   text-transform: uppercase;
   padding: 6px 14px;
-  color: var(--accent);
+  color: var(--accent-text);
   border: 1px solid var(--border-accent);
   border-radius: var(--radius-sm);
 }
