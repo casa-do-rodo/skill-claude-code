@@ -28,7 +28,7 @@
 
 .hero-inner {
   display: grid;
-  grid-template-columns: 1fr 420px;
+  grid-template-columns: 1fr minmax(320px, 420px);
   gap: var(--space-16);
   align-items: center;
   width: 100%;
@@ -63,7 +63,7 @@
 .hero-headline {
   font-family: var(--font-display);
   font-size: clamp(42px, 6vw, 72px);
-  font-weight: 900;
+  font-weight: 700;
   line-height: 1;
   letter-spacing: -1px;
   color: var(--text);
@@ -109,7 +109,6 @@
   position: relative;
 }
 .hero-f-wrapper {
-  will-change: transform;
 }
 
 @media (max-width: 900px) {
@@ -189,7 +188,7 @@
   width: 180px; height: 56px;
   background: var(--bg-elevated);
   border: 1px solid var(--border-accent);
-  transform: rotate(-1deg);
+  transform: rotate(-2.5deg);
   border-radius: var(--radius);
   font-family: var(--font-display);
   font-size: 10px;
@@ -199,7 +198,7 @@
   color: var(--accent);
 }
 .tree-diamond-inner {
-  transform: rotate(1deg);
+  transform: rotate(2.5deg);
 }
 
 .tree-fork-wrap {
@@ -244,6 +243,7 @@
   align-items: center;
   gap: 0;
   position: relative;
+  justify-content: flex-start;
 }
 
 .tree-branch::before {
@@ -331,7 +331,7 @@
   display: flex;
   width: 100%;
   max-width: 800px;
-  height: 32px;
+  height: 48px;
 }
 .tree-merge-left {
   flex: 1;
@@ -352,6 +352,9 @@
 .capabilities-header {
   max-width: 600px;
   margin-bottom: var(--space-16);
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .capabilities-grid {
@@ -377,6 +380,7 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: var(--space-6);
+  align-items: start;
 }
 
 @media (max-width: 900px) {
@@ -411,7 +415,7 @@
 .cta-title {
   font-family: var(--font-display);
   font-size: clamp(28px, 4vw, 48px);
-  font-weight: 900;
+  font-weight: 700;
   color: var(--text);
   margin-bottom: var(--space-5);
   line-height: 1.1;
@@ -450,7 +454,7 @@
   font-size: 10px;
   font-weight: 700;
   letter-spacing: 1.5px;
-  color: var(--text-faint);
+  color: var(--text-muted);
   text-transform: uppercase;
 }
 

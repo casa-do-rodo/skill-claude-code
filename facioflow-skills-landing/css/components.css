@@ -173,11 +173,11 @@
 }
 .skill-chip.highlight {
   border-color: var(--border-accent);
-  color: rgba(36, 99, 235, 0.8);
+  color: var(--cyan);
 }
 .skill-chip.highlight:hover {
-  color: var(--accent);
-  border-color: var(--accent);
+  color: #fff;
+  border-color: var(--cyan);
 }
 
 /* ── BADGE ──────────────────────────────────── */
@@ -304,8 +304,8 @@
   color: var(--text-muted);
 }
 .tree-node-meta {
-  font-family: var(--font-display);
-  font-size: 8px;
+  font-family: var(--font-body);
+  font-size: 11px;
   font-weight: 700;
   letter-spacing: 1.5px;
   text-transform: uppercase;
@@ -379,10 +379,10 @@
   gap: var(--space-3);
 }
 .feature-card-list li {
-  font-family: var(--font-display);
-  font-size: 11px;
+  font-family: var(--font-body);
+  font-size: 13px;
   font-weight: 700;
-  letter-spacing: 0.5px;
+  letter-spacing: 0;
   color: var(--text-muted);
   display: flex;
   align-items: center;
@@ -460,4 +460,9 @@
   .navbar-logo img {
     animation: logo-breathe 4s ease-in-out infinite;
   }
+}
+
+/* ── FOOTER ─────────────────────────────────── */
+.footer-text {
+  color: var(--text-muted);
 }
