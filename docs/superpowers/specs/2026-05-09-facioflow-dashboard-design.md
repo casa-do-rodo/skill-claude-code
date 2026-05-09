@@ -166,9 +166,19 @@ Cada card: avatar (inicial estilizada com cor accent), nome, status badge, métr
 
 ## Schema Supabase
 
+**Project:** `morpheus2_db` (existente, ID: `jzzirxvhnvczqnscnetr`, region us-west-2)
+**Schema dedicado:** `facioflow_dashboard` (criar — não conflita com `kopenhagen` ou `public`)
+
+Todas as tabelas vivem em `facioflow_dashboard.*`. PostgREST precisa do schema exposto via `db_schemas` config (Supabase Settings > API > Exposed schemas).
+
 ```sql
+create schema if not exists facioflow_dashboard;
+grant usage on schema facioflow_dashboard to anon, authenticated, service_role;
+alter default privileges in schema facioflow_dashboard grant select on tables to anon, authenticated;
+alter default privileges in schema facioflow_dashboard grant all on tables to service_role;
+
 -- Mirror simplificado do ClickUp workspace
-create table spaces (
+create table facioflow_dashboard.spaces (
   id text primary key,
   name text not null,
   type text check (type in ('client', 'internal')) default 'client',
@@ -176,24 +186,24 @@ create table spaces (
   last_synced_at timestamptz default now()
 );
 
-create table folders (
+create table facioflow_dashboard.folders (
   id text primary key,
-  space_id text references spaces(id) on delete cascade,
+  space_id text references facioflow_dashboard.spaces(id) on delete cascade,
   name text not null,
   last_synced_at timestamptz default now()
 );
 
-create table lists (
+create table facioflow_dashboard.lists (
   id text primary key,
-  folder_id text references folders(id) on delete cascade,
+  folder_id text references facioflow_dashboard.folders(id) on delete cascade,
   name text not null,
   order_index int,
   last_synced_at timestamptz default now()
 );
 
-create table tasks (
+create table facioflow_dashboard.tasks (
   id text primary key,
-  list_id text references lists(id) on delete cascade,
+  list_id text references facioflow_dashboard.lists(id) on delete cascade,
   name text not null,
   status text not null,
   priority text,
@@ -204,12 +214,12 @@ create table tasks (
   last_synced_at timestamptz default now()
 );
 
-create index tasks_list_id_idx on tasks(list_id);
-create index tasks_status_idx on tasks(status);
-create index tasks_priority_idx on tasks(priority) where priority is not null;
+create index tasks_list_id_idx on facioflow_dashboard.tasks(list_id);
+create index tasks_status_idx on facioflow_dashboard.tasks(status);
+create index tasks_priority_idx on facioflow_dashboard.tasks(priority) where priority is not null;
 
 -- Histórico de syncs para charts "ao longo do tempo"
-create table sync_log (
+create table facioflow_dashboard.sync_log (
   id uuid primary key default gen_random_uuid(),
   started_at timestamptz default now(),
   finished_at timestamptz,
@@ -220,7 +230,7 @@ create table sync_log (
 );
 
 -- Snapshot diário de KPIs (para chart "evolução de tasks completas")
-create table kpi_snapshots (
+create table facioflow_dashboard.kpi_snapshots (
   id uuid primary key default gen_random_uuid(),
   captured_at timestamptz default now(),
   total_tasks int,
@@ -230,22 +240,24 @@ create table kpi_snapshots (
 );
 
 -- RLS aberto pra leitura (showcase, sem auth complexa)
-alter table spaces enable row level security;
-alter table folders enable row level security;
-alter table lists enable row level security;
-alter table tasks enable row level security;
-alter table sync_log enable row level security;
-alter table kpi_snapshots enable row level security;
+alter table facioflow_dashboard.spaces enable row level security;
+alter table facioflow_dashboard.folders enable row level security;
+alter table facioflow_dashboard.lists enable row level security;
+alter table facioflow_dashboard.tasks enable row level security;
+alter table facioflow_dashboard.sync_log enable row level security;
+alter table facioflow_dashboard.kpi_snapshots enable row level security;
 
-create policy "public read" on spaces for select using (true);
-create policy "public read" on folders for select using (true);
-create policy "public read" on lists for select using (true);
-create policy "public read" on tasks for select using (true);
-create policy "public read" on sync_log for select using (true);
-create policy "public read" on kpi_snapshots for select using (true);
+create policy "public read" on facioflow_dashboard.spaces for select using (true);
+create policy "public read" on facioflow_dashboard.folders for select using (true);
+create policy "public read" on facioflow_dashboard.lists for select using (true);
+create policy "public read" on facioflow_dashboard.tasks for select using (true);
+create policy "public read" on facioflow_dashboard.sync_log for select using (true);
+create policy "public read" on facioflow_dashboard.kpi_snapshots for select using (true);
 
 -- Escrita só via service role (Edge Function usa SUPABASE_SERVICE_KEY)
 ```
+
+**Action item antes de aplicar a migration:** expor `facioflow_dashboard` em **Supabase Dashboard > Settings > API > Exposed schemas** (default: só `public`). Sem isso, o supabase-js não consegue queryar.
 
 ---
 
@@ -304,13 +316,14 @@ create policy "public read" on kpi_snapshots for select using (true);
 
 ---
 
-## Decisões deferidas pra discussão antes do plano
+## Decisões finais (resolvidas antes do plano)
 
-- **Supabase project**: criar novo? Usar existente do Carlos?
-- **Org Supabase**: qual usar?
-- **Hosting Next.js**: Vercel? Local-only?
-- **Cron Edge Function**: pg_cron interno do Supabase ou GitHub Actions?
-- **Auth**: confirmamos que é anon-only nesta versão? Ou single-user com magic link?
+- **Supabase project:** `morpheus2_db` (existente, ID `jzzirxvhnvczqnscnetr`, us-west-2)
+- **Schema:** `facioflow_dashboard` (criar — isolado, sem conflito com `kopenhagen` schema existente)
+- **Org Supabase:** FacioFlow (única)
+- **Hosting Next.js:** local-only nesta sessão. Deploy Vercel quando tiver auth real
+- **Cron Edge Function:** pg_cron interno do Supabase (self-contained, valida feature avançada da skill)
+- **Auth:** anon-only (consistente com local-only)
 
 ---
 
