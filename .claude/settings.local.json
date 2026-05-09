@@ -28,7 +28,8 @@
       "Bash(npx skills *)",
       "Skill(checkpoint)",
       "Skill(remember:remember)",
-      "Bash(scripts/start-server.sh *)"
+      "Bash(scripts/start-server.sh *)",
+      "WebFetch(domain:claudemarketplaces.com)"
     ]
   }
 }

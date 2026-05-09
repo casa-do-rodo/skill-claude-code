@@ -31,7 +31,9 @@ This is a **demo project for the Claude Code skills ecosystem** (superpowers). I
 
 ## Skills Installed
 
-Skills live in `.agents/skills/`. Installed via `npx skills add <source>/<repo>`, tracked in `skills-lock.json`.
+Skills instaladas via marketplaces vivem em `.agents/skills/` (instaladas com `npx skills add <repo> --skill <name>`, tracked in `skills-lock.json`). Skills custom feitas pra este projeto vivem em `.claude/skills/`.
+
+> ⚠️ **Cuidado ao instalar skills**: sempre use `--skill <name>` pra evitar instalar o repo inteiro. Sem o flag, o `npx skills add` baixa todas as skills do repo. Use a skill `find-skills` quando precisar descobrir uma skill nova.
 
 ### Pipeline de desenvolvimento
 
@@ -69,6 +71,21 @@ Skills live in `.agents/skills/`. Installed via `npx skills add <source>/<repo>`
 | Skill | Source | Quando ativa |
 |---|---|---|
 | `writing-skills` | obra/superpowers | Ao criar ou editar skills — TDD aplicado à documentação |
+| `find-skills` | vercel-labs/skills | Ao precisar descobrir/instalar uma skill nova — evita instalar repos inteiros à toa |
+
+### Frontend Design (specialty)
+
+| Skill | Source | Quando ativa |
+|---|---|---|
+| `design-taste-frontend` | leonxlnx/taste-skill | Rigor técnico em UI: DESIGN_VARIANCE/MOTION_INTENSITY metrics, anti-slop, GPU-safe motion |
+| `svg-animations` | supermemoryai/skills | Qualquer animação SVG: path drawing, motion paths, masks, filters, SMIL, keySplines |
+| `web-design-guidelines` | vercel-labs/agent-skills | Audit de UI contra Vercel Web Interface Guidelines (a11y, focus, anti-patterns) |
+| `redesign-existing-projects` | leonxlnx/taste-skill | Audit de gosto: identifica genericidade AI, propõe upgrades estéticos |
+| `full-output-enforcement` | leonxlnx/taste-skill | Anti-truncation: força output completo em tasks longas |
+| `vercel-composition-patterns` | vercel-labs/agent-skills | React composition patterns (compound components, render props, contexts) |
+| `vercel-react-best-practices` | vercel-labs/agent-skills | Performance React/Next.js: rendering, bundle, data fetching |
+| `vercel-react-view-transitions` | vercel-labs/agent-skills | Animações de transição de página/rota com View Transition API |
+| `frontend-audit-gate` | custom | **Gate obrigatório** antes de `finishing-a-development-branch`. Orquestra os 3 audits e propõe aplicação manual ou paralela via `ui-subagent` |
 
 ### Supabase
 
@@ -95,25 +112,67 @@ Skills live in `.agents/skills/`. Installed via `npx skills add <source>/<repo>`
 
 **Override da skill `brainstorming`:** a skill diz "do NOT invoke frontend-design — the ONLY skill after brainstorming is writing-plans." Esta instrução é overridden para projetos visuais (landing pages, dashboards, UI): após aprovação do spec e antes de invocar `writing-plans`, invocar `frontend-design` para refinar a direção visual. Esta instrução de usuário tem prioridade máxima sobre a skill.
 
+### Decision Tree por tipo de projeto
+
+A skill `using-superpowers` invoca `brainstorming` no início. **Após brainstorming aprovar o spec**, escolher pipeline:
+
+| Tipo de projeto | Pipeline |
+|---|---|
+| **LP estática / Marketing** | `frontend-design` → build iterativo → `frontend-audit-gate` → `finishing-a-development-branch` |
+| **Componente / Widget** | build direto → `frontend-audit-gate` → `finishing-a-development-branch` |
+| **App / Dashboard** | `frontend-design` → `writing-plans` → `subagent-driven-development` (UI tasks vão pro `ui-subagent`) → `frontend-audit-gate` → `verification-before-completion` → `finishing-a-development-branch` |
+| **Refactor / Migration** | `writing-plans` → `subagent-driven-development` → `frontend-audit-gate` (se mexer em UI) → `finishing-a-development-branch` |
+
+### Regras invioláveis
+
+- **`frontend-audit-gate` é gate obrigatório** antes de `finishing-a-development-branch` em **qualquer projeto frontend**. Sem exceção.
+- **Tasks de UI dentro de `subagent-driven-development` vão pro `ui-subagent`** (não pro subagente genérico). Mantém qualidade visual Opus 4.7 mesmo se a sessão principal for Sonnet.
+- **Para LP/componente simples, `writing-plans` é opcional** — se a build for iterativa com feedback visual em tempo real, dispensável. Para projetos com state/lógica complexa, é obrigatório.
+
+### Diagrama visual
+
 ```
-using-superpowers (meta — governa tudo)
+using-superpowers (governa tudo)
         ↓
-brainstorming → [frontend-design — projetos visuais] → writing-plans
-                                          ↓
-                           subagent-driven-development  ←  (recomendado)
-                           executing-plans              ←  (alternativa inline)
-                                          ↓
-                              [por task: test-driven-development]
-                              [por task: requesting-code-review]
-                                          ↓
-                           verification-before-completion
-                                          ↓
-                           finishing-a-development-branch
+brainstorming → spec aprovado
+        ↓
+[CLAUDE.md decision tree → seleciona pipeline]
+        ↓
+   ┌────┴───────────────────────────────────────┐
+   ↓                                            ↓
+LP/componente:                          App/Dashboard:
+frontend-design                         frontend-design
+   ↓                                       ↓
+build iterativo                         writing-plans
+                                           ↓
+                                        subagent-driven-development
+                                        ├─ UI tasks → ui-subagent (Opus 4.7)
+                                        └─ logic    → subagente genérico
+                                           ↓
+                                        [por task: TDD + code-review]
+   ↓                                       ↓
+   └──────────┬─────────────────────────────┘
+              ↓
+        frontend-audit-gate (OBRIGATÓRIO)
+              ↓ (manual OU paralelo via ui-subagent)
+        aplicação dos fixes
+              ↓
+        verification-before-completion (apps complexos)
+              ↓
+        finishing-a-development-branch
 
 PARALELO: systematic-debugging (qualquer bug)
           dispatching-parallel-agents (2+ problemas independentes)
           using-git-worktrees (workspace isolado)
 ```
+
+## Subagentes Custom
+
+Subagentes ficam em `.claude/agents/<name>.md`. São diferentes de skills — têm modelo fixo, tools restritas, e podem ser invocados por outras skills/sessions.
+
+| Subagente | Modelo | Quando usar |
+|---|---|---|
+| `ui-subagent` | claude-opus-4-7 | Tasks de UI (build de componentes, aplicação de fixes do audit gate, refinamento de SVG animation). Skills visuais pré-carregadas (frontend-design, design-taste-frontend, svg-animations, web-design-guidelines, redesign-existing-projects). Tools restritas a Read/Edit/Write/Glob/Grep — sem Bash, sem git, sem WebFetch. |
 
 ## Project Structure
 
