@@ -1,0 +1,46 @@
+:root {
+  --bg:              #080808;
+  --bg-elevated:     #141414;
+  --bg-surface:      #1C1C1C;
+
+  --accent:          #2463EB;
+  --accent-dim:      rgba(36, 99, 235, 0.12);
+  --accent-glow:     rgba(36, 99, 235, 0.24);
+  --accent-hover:    #1D4FD8;
+  --accent-text:     #4F84F0;
+
+  --supabase:        #3ECF8E;
+  --supabase-dim:    rgba(62, 207, 142, 0.12);
+  --n8n:             #EA4B48;
+  --n8n-dim:         rgba(234, 75, 72, 0.12);
+  --cyan:            #9DDBFF;
+  --cyan-dim:        rgba(157, 219, 255, 0.12);
+
+  --text:            #FFFFFF;
+  --text-muted:      #6B7280;
+  --text-faint:      #374151;
+
+  --border:          rgba(255, 255, 255, 0.08);
+  --border-accent:   rgba(36, 99, 235, 0.3);
+
+  --font-display:    'Tomorrow', sans-serif;
+  --font-body:       'Inter', sans-serif;
+  --font-mono:       'SF Mono', 'Fira Code', Consolas, monospace;
+
+  --space-1:  4px;   --space-2:  8px;   --space-3:  12px;
+  --space-4:  16px;  --space-5:  20px;  --space-6:  24px;
+  --space-8:  32px;  --space-10: 40px;  --space-12: 48px;
+  --space-16: 64px;  --space-20: 80px;  --space-24: 96px;
+
+  --radius-sm: 4px;
+  --radius:    8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+
+  --trans:      0.2s ease;
+  --trans-slow: 0.45s ease;
+
+  --sidebar-width-expanded: 240px;
+  --sidebar-width-collapsed: 64px;
+  --topbar-height: 56px;
+}
