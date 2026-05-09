@@ -1,0 +1,29 @@
+/* ============================================================
+   Dashboard shell — wrapper do conteúdo (à direita da sidebar).
+   Padding-left dinâmico via custom property setada pela Sidebar.
+   Padding-top fixo pra acomodar o Topbar.
+   ============================================================ */
+
+.shell {
+  min-height: 100dvh;
+  padding-left: var(--sidebar-current-width, var(--sidebar-width-expanded));
+  transition: padding-left var(--trans-slow);
+}
+
+.content {
+  padding-top: var(--topbar-height);
+  min-height: 100dvh;
+}
+
+/* Mobile: sidebar é drawer overlay, shell ocupa 100% width */
+@media (max-width: 768px) {
+  .shell {
+    padding-left: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shell {
+    transition: none;
+  }
+}

@@ -1,0 +1,240 @@
+/* ============================================================
+   Sidebar — collapsible navigation
+   Default: 240px expanded; collapsed: 64px (icons only).
+   Mobile (<= 768px): drawer com transform + backdrop overlay.
+   ============================================================ */
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: var(--sidebar-width-expanded);
+  background: var(--bg-elevated);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  z-index: 50;
+  transition: width var(--trans-slow), transform var(--trans-slow);
+  overflow: hidden;
+}
+
+.sidebar[data-collapsed="true"] {
+  width: var(--sidebar-width-collapsed);
+}
+
+/* ---------- Header (logo + wordmark) ---------- */
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  height: var(--topbar-height);
+  padding: 0 var(--space-4);
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.logo {
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+  display: block;
+}
+
+.wordmark {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--text);
+  white-space: nowrap;
+  transition: opacity var(--trans);
+}
+
+.sidebar[data-collapsed="true"] .wordmark {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ---------- Navigation ---------- */
+
+.nav {
+  flex: 1;
+  padding: var(--space-4) var(--space-3);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  overflow-y: auto;
+}
+
+.navItem {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3);
+  border-radius: var(--radius);
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background var(--trans), color var(--trans);
+  white-space: nowrap;
+  position: relative;
+}
+
+.navItem:hover {
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text);
+}
+
+.navItem[data-active="true"] {
+  background: var(--accent-dim);
+  color: var(--accent-text);
+}
+
+/* Accent rail no item ativo — 2px à esquerda, marca a navegação atual */
+.navItem[data-active="true"]::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 8px;
+  bottom: 8px;
+  width: 2px;
+  background: var(--accent);
+  border-radius: 0 2px 2px 0;
+}
+
+.navIcon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.navLabel {
+  transition: opacity var(--trans);
+}
+
+.sidebar[data-collapsed="true"] .navLabel {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Center icons quando colapsada — visual mais limpo */
+.sidebar[data-collapsed="true"] .navItem {
+  justify-content: center;
+  padding: var(--space-3) 0;
+}
+
+/* ---------- Footer (toggle button) ---------- */
+
+.footer {
+  padding: var(--space-3);
+  border-top: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.toggle {
+  width: 100%;
+  height: 36px;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text-muted);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background var(--trans), color var(--trans), border-color var(--trans);
+}
+
+.toggle:hover {
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text);
+  border-color: rgba(255, 255, 255, 0.16);
+}
+
+.toggleIcon {
+  width: 16px;
+  height: 16px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* ---------- Backdrop (mobile drawer) ---------- */
+
+.backdrop {
+  display: none;
+}
+
+/* ---------- Mobile (<= 768px) ---------- */
+
+@media (max-width: 768px) {
+  .sidebar {
+    transform: translateX(-100%);
+    width: var(--sidebar-width-expanded);
+  }
+
+  /* No mobile, ignoramos collapsed — sempre full width quando aberta */
+  .sidebar[data-collapsed="true"] {
+    width: var(--sidebar-width-expanded);
+  }
+
+  .sidebar[data-mobile-open="true"] {
+    transform: translateX(0);
+  }
+
+  /* Wordmark sempre visível no mobile (drawer é full width) */
+  .sidebar[data-collapsed="true"] .wordmark,
+  .sidebar[data-collapsed="true"] .navLabel {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .sidebar[data-collapsed="true"] .navItem {
+    justify-content: flex-start;
+    padding: var(--space-3);
+  }
+
+  /* Toggle desktop não faz sentido em mobile drawer */
+  .footer {
+    display: none;
+  }
+
+  .backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(2px);
+    z-index: 49;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--trans);
+  }
+
+  .backdrop[data-visible="true"] {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+/* Reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  .sidebar,
+  .navItem,
+  .navLabel,
+  .wordmark,
+  .toggle,
+  .backdrop {
+    transition: none;
+  }
+}

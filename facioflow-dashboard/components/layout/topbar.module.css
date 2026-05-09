@@ -1,0 +1,183 @@
+/* ============================================================
+   Topbar — fixed top, alinhado ao shell (sidebar à esquerda).
+   Conteúdo: hamburger (mobile) | breadcrumb | sync status + button
+   ============================================================ */
+
+.topbar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: var(--sidebar-current-width, var(--sidebar-width-expanded));
+  height: var(--topbar-height);
+  background: var(--bg-elevated);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  padding: 0 var(--space-6);
+  gap: var(--space-4);
+  z-index: 40;
+  transition: left var(--trans-slow);
+}
+
+/* ---------- Hamburger (mobile) ---------- */
+
+.hamburger {
+  display: none;
+  width: 36px;
+  height: 36px;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text-muted);
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  transition: background var(--trans), color var(--trans);
+  flex-shrink: 0;
+}
+
+.hamburger:hover {
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text);
+}
+
+.hamburgerIcon {
+  width: 18px;
+  height: 18px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* ---------- Breadcrumb ---------- */
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex: 1;
+  min-width: 0;
+}
+
+.breadcrumbLabel {
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ---------- Right cluster (sync) ---------- */
+
+.right {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  flex-shrink: 0;
+}
+
+.syncStatus {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: 12px;
+  color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.syncDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--supabase);
+  box-shadow: 0 0 0 3px var(--supabase-dim);
+  flex-shrink: 0;
+}
+
+.syncDot[data-stale="true"] {
+  background: var(--text-faint);
+  box-shadow: 0 0 0 3px rgba(55, 65, 81, 0.24);
+}
+
+.syncButton {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  height: 32px;
+  padding: 0 var(--space-4);
+  background: var(--accent);
+  color: var(--text);
+  border: none;
+  border-radius: var(--radius);
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background var(--trans), opacity var(--trans);
+  white-space: nowrap;
+}
+
+.syncButton:hover {
+  background: var(--accent-hover);
+}
+
+.syncButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.spinner {
+  width: 12px;
+  height: 12px;
+  border: 1.5px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ---------- Mobile (<= 768px) ---------- */
+
+@media (max-width: 768px) {
+  .topbar {
+    left: 0;
+    padding: 0 var(--space-4);
+    gap: var(--space-3);
+  }
+
+  .hamburger {
+    display: inline-flex;
+  }
+
+  /* No mobile, esconde "última sync" — economiza espaço */
+  .syncStatus {
+    display: none;
+  }
+
+  .syncButton {
+    padding: 0 var(--space-3);
+    font-size: 12px;
+  }
+}
+
+/* Reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  .topbar,
+  .hamburger,
+  .syncButton {
+    transition: none;
+  }
+  .spinner {
+    animation: none;
+  }
+}
