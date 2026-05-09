@@ -37,7 +37,7 @@ section {
   font-family: var(--font-display);
   font-size: 10px;
   font-weight: 700;
-  letter-spacing: 3px;
+  letter-spacing: 2.4px;
   text-transform: uppercase;
   color: var(--accent);
   margin-bottom: var(--space-4);
@@ -47,7 +47,7 @@ section {
   font-family: var(--font-display);
   font-size: clamp(28px, 4vw, 44px);
   font-weight: 700;
-  line-height: 1.1;
+  line-height: 1.05;
   color: var(--text);
   margin-bottom: var(--space-5);
   text-wrap: balance;

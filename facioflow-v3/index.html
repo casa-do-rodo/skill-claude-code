@@ -7,7 +7,9 @@
   <meta property="og:title" content="FacioFlow // Skills — Ecossistema Claude Code">
   <meta property="og:description" content="38 skills transformam o Claude Code num pipeline de engenharia estruturado. Frontend, n8n e Supabase — cada stack tem seu fluxo.">
   <meta property="og:type" content="website">
+  <meta property="og:image" content="../assets/icone_branco 1-1.svg">
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#070A13">
   <link rel="icon" type="image/svg+xml" href="../assets/icone_branco 1-1.svg">
   <title>FacioFlow // Skills — Ecossistema Claude Code</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -24,14 +26,14 @@
 <nav class="navbar" aria-label="Navegação principal">
   <div class="container">
     <div class="navbar-inner">
-      <a href="#" class="navbar-logo" aria-label="FacioFlow início">
-        <img src="../assets/logo_branco 1-1.svg" alt="FacioFlow" height="22" width="auto">
+      <a href="#hero" class="navbar-logo" aria-label="FacioFlow início">
+        <img src="../assets/logo_branco 1-1.svg" alt="" height="22" width="auto">
       </a>
       <ul class="navbar-links" id="navbar-links" role="list">
-        <li><a href="#stacks">Stacks</a></li>
-        <li><a href="#pipeline">Pipeline</a></li>
-        <li><a href="#arsenal">Arsenal</a></li>
-        <li><a href="https://github.com/casa-do-rodo/skill-claude-code" target="_blank" rel="noopener" class="btn-nav">GitHub →</a></li>
+        <li><a href="#stacks" data-nav-link>Stacks</a></li>
+        <li><a href="#pipeline" data-nav-link>Pipeline</a></li>
+        <li><a href="#arsenal" data-nav-link>Arsenal</a></li>
+        <li><a href="https://github.com/casa-do-rodo/skill-claude-code" target="_blank" rel="noopener noreferrer" class="btn-nav">GitHub →</a></li>
       </ul>
       <button class="navbar-mobile-toggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="navbar-links" type="button">
         <span></span><span></span><span></span>
@@ -40,7 +42,7 @@
   </div>
 </nav>
 
-<main id="main-content">
+<main id="main-content" tabindex="-1">
 
 <!-- ============ SEÇÃO 1: HERO ============ -->
 <section class="hero" id="hero" aria-labelledby="hero-title">
@@ -50,8 +52,7 @@
     <div class="hero-inner">
       <div class="hero-text">
         <span class="hero-badge reveal" data-delay="0">
-          <span class="hero-badge-dot" aria-hidden="true"></span>
-          FacioFlow Skills Ecosystem
+          <span lang="en">FacioFlow Skills Ecosystem</span>
         </span>
         <h1 class="hero-headline" id="hero-title">
           <span class="reveal" data-delay="120">O Claude Code</span>
@@ -69,7 +70,7 @@
           </div>
         </div>
       </div>
-      <div class="hero-visual" aria-hidden="true">
+      <div class="hero-visual">
         <svg viewBox="700 720 600 620" width="380" height="392" fill="none"
              xmlns="http://www.w3.org/2000/svg" role="img"
              aria-labelledby="fv3-title fv3-desc">
@@ -134,20 +135,17 @@
 
             <!-- Pulse waves clipped to F -->
             <g clip-path="url(#fv3Clip)">
-              <circle cx="790" cy="1280" r="20" fill="none" stroke="#9DDBFF" stroke-width="34">
+              <circle cx="790" cy="1280" r="20" fill="none" stroke="#9DDBFF" stroke-width="12">
                 <animate attributeName="r" values="10;380" keyTimes="0;1" dur="4s" repeatCount="indefinite" calcMode="spline" keySplines="0 0 0.58 1"/>
                 <animate attributeName="opacity" values="0;0.55;0.25;0" keyTimes="0;0.2;0.7;1" dur="4s" repeatCount="indefinite"/>
-                <animate attributeName="stroke-width" values="36;4" keyTimes="0;1" dur="4s" repeatCount="indefinite" calcMode="spline" keySplines="0.42 0 1 1"/>
               </circle>
-              <circle cx="1255" cy="830" r="20" fill="none" stroke="#9DDBFF" stroke-width="34" opacity="0">
+              <circle cx="1255" cy="830" r="20" fill="none" stroke="#9DDBFF" stroke-width="12" opacity="0">
                 <animate attributeName="r" values="10;380" keyTimes="0;1" dur="4s" begin="-1.3s" repeatCount="indefinite" calcMode="spline" keySplines="0 0 0.58 1"/>
                 <animate attributeName="opacity" values="0;0.55;0.25;0" keyTimes="0;0.2;0.7;1" dur="4s" begin="-1.3s" repeatCount="indefinite"/>
-                <animate attributeName="stroke-width" values="36;4" keyTimes="0;1" dur="4s" begin="-1.3s" repeatCount="indefinite" calcMode="spline" keySplines="0.42 0 1 1"/>
               </circle>
-              <circle cx="1190" cy="1090" r="20" fill="none" stroke="#9DDBFF" stroke-width="34" opacity="0">
+              <circle cx="1190" cy="1090" r="20" fill="none" stroke="#9DDBFF" stroke-width="12" opacity="0">
                 <animate attributeName="r" values="10;380" keyTimes="0;1" dur="4s" begin="-2.7s" repeatCount="indefinite" calcMode="spline" keySplines="0 0 0.58 1"/>
                 <animate attributeName="opacity" values="0;0.55;0.25;0" keyTimes="0;0.2;0.7;1" dur="4s" begin="-2.7s" repeatCount="indefinite"/>
-                <animate attributeName="stroke-width" values="36;4" keyTimes="0;1" dur="4s" begin="-2.7s" repeatCount="indefinite" calcMode="spline" keySplines="0.42 0 1 1"/>
               </circle>
               <!-- Scan line -->
               <rect x="700" width="600" height="40" fill="#9DDBFF" opacity="0.07">
@@ -416,7 +414,7 @@
 
       <!-- ANTES -->
       <div class="compare-panel compare-panel--before reveal" data-delay="0">
-        <div class="compare-panel-header">
+        <div class="compare-panel-header" aria-label="Estado: sem estrutura">
           <span class="compare-panel-dot compare-panel-dot--red" aria-hidden="true"></span>
           <span class="compare-panel-label">Sem estrutura</span>
         </div>
@@ -435,7 +433,7 @@
 
       <!-- DEPOIS -->
       <div class="compare-panel compare-panel--after reveal" data-delay="120">
-        <div class="compare-panel-header">
+        <div class="compare-panel-header" aria-label="Estado: com FacioFlow">
           <span class="compare-panel-dot compare-panel-dot--green" aria-hidden="true"></span>
           <span class="compare-panel-label">Com FacioFlow</span>
         </div>
@@ -580,7 +578,7 @@
         38 skills. 3 stacks. Uma sessão muda tudo.
       </p>
       <div class="cta-actions reveal" data-delay="280">
-        <a href="https://github.com/casa-do-rodo/skill-claude-code" target="_blank" rel="noopener" class="btn btn-primary">Ver no GitHub →</a>
+        <a href="https://github.com/casa-do-rodo/skill-claude-code" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Ver no GitHub →</a>
         <a href="#arsenal" class="btn btn-secondary">Explorar Skills →</a>
       </div>
     </div>
@@ -588,15 +586,16 @@
 </section>
 
 <!-- ============ SEÇÃO 7: FOOTER ============ -->
-<footer class="footer" role="contentinfo">
+<footer class="footer">
   <div class="container">
     <div class="footer-inner">
-      <a href="#" class="footer-logo" aria-label="FacioFlow — início">
-        <img src="../assets/logo_branco 1-1.svg" alt="FacioFlow" height="20" width="auto">
+      <a href="#hero" class="footer-logo" aria-label="FacioFlow — início">
+        <img src="../assets/logo_branco 1-1.svg" alt="" height="20" width="auto">
       </a>
       <div class="footer-credits">
+        <span class="footer-copyright">© 2026 FacioFlow</span>
         <span class="footer-sep">·</span>
-        <a href="https://github.com/casa-do-rodo/skill-claude-code" target="_blank" rel="noopener" class="footer-link">GitHub</a>
+        <a href="https://github.com/casa-do-rodo/skill-claude-code" target="_blank" rel="noopener noreferrer" class="footer-link">GitHub</a>
         <span class="footer-sep">·</span>
         <a href="#arsenal" class="footer-link">Skills</a>
         <span class="footer-sep">·</span>
