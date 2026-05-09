@@ -19,10 +19,10 @@
   opacity: 0.6;
 }
 
-/* Blue glow orb */
+/* Blue glow orb — vaza p/ próxima seção criando layering entre hero e .problema */
 .hero-glow {
   position: absolute;
-  bottom: -120px;
+  bottom: -200px;
   left: 50%;
   transform: translateX(-50%);
   width: 700px;
@@ -124,7 +124,12 @@
 }
 
 /* ─── PROBLEMA ────────────────────────────────────── */
-.problema { background: var(--bg-elevated); }
+/* z-index: 1 + position: relative => fica acima do hero-glow vazando, mas o glow vaza por trás */
+.problema {
+  background: var(--bg-elevated);
+  position: relative;
+  z-index: 1;
+}
 
 .problema-grid {
   display: grid;
@@ -148,7 +153,8 @@
   border-color: var(--border-accent);
   border-left-color: var(--accent);
   transform: translateY(-3px);
-  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+  /* tinted shadow: rgba(0,0,0,0.3) -> rgba(36,99,235,0.42) p/ coerência com paleta */
+  box-shadow: 0 8px 32px rgba(36,99,235,0.42);
 }
 
 .prob-icon {
@@ -568,5 +574,42 @@
   display: flex;
   gap: var(--space-4);
   justify-content: center;
+  align-items: center;
   flex-wrap: wrap;
+}
+
+/* ─── FOOTER ──────────────────────────────────────── */
+.site-footer {
+  border-top: 1px solid var(--border);
+  padding: var(--space-8) 0;
+  background: var(--bg);
+}
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+}
+.footer-brand {
+  font-family: var(--font-display);
+  font-size: 11px;
+  color: var(--text-muted);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.footer-brand a { color: var(--text); text-decoration: none; }
+.footer-brand a:hover { color: var(--accent); }
+.footer-links {
+  display: flex; gap: var(--space-6);
+  list-style: none;
+}
+.footer-links a {
+  font-family: var(--font-display);
+  font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--text-muted); text-decoration: none;
+}
+.footer-links a:hover { color: var(--text); }
+@media (max-width: 600px) {
+  .footer-inner { flex-direction: column; align-items: flex-start; }
 }

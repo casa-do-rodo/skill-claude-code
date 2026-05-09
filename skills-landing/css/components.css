@@ -118,6 +118,7 @@
   transform: translateY(-2px);
   box-shadow: 0 8px 28px var(--accent-glow);
 }
+.btn-primary:active { transform: translateY(0) scale(0.98); }
 .btn-secondary {
   background: transparent;
   color: var(--text-muted);
@@ -128,6 +129,8 @@
   color: var(--text);
   transform: translateY(-2px);
 }
+.btn-secondary:active { transform: translateY(0) scale(0.98); }
+.btn:active { transform: translateY(0) scale(0.98); }
 
 /* ─── SKILL CHIPS ─────────────────────────────────── */
 .skill-chip {
@@ -220,4 +223,38 @@
   font-size: 18px;
   padding: 0 var(--space-1);
 }
+
+/* ─── FOCUS STATES (a11y) ──────────────────────── */
+.btn:focus-visible,
+.btn-nav:focus-visible,
+.navbar-logo:focus-visible,
+.navbar-links a:focus-visible,
+.navbar-mobile-toggle:focus-visible,
+.skill-chip:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: var(--radius);
+}
+
+/* ─── SKIP LINK (a11y) ─────────────────────────── */
+.skip-link {
+  position: absolute; top: -40px; left: 16px;
+  background: var(--accent); color: #fff;
+  padding: 8px 16px; border-radius: var(--radius);
+  font-family: var(--font-display); font-size: 12px; font-weight: 700;
+  letter-spacing: 1px; text-transform: uppercase;
+  text-decoration: none; z-index: 1000;
+  transition: top 0.2s ease;
+}
+.skip-link:focus { top: 16px; }
+
+/* ─── CTA TEXT LINK ────────────────────────────── */
+.cta-text-link {
+  font-family: var(--font-display);
+  font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase;
+  color: var(--text-muted); text-decoration: underline;
+  text-underline-offset: 4px;
+  transition: color 0.2s ease;
+}
+.cta-text-link:hover { color: var(--accent); }
 

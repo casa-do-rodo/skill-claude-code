@@ -39,7 +39,7 @@ body::after {
   padding: 0 var(--space-6);
 }
 
-section { padding: var(--space-20) 0; }
+section { padding: var(--space-20) 0 calc(var(--space-20) * 1.15); }
 
 /* Scroll reveal */
 .reveal {
@@ -130,5 +130,5 @@ section { padding: var(--space-20) 0; }
 
 @media (max-width: 768px) {
   .container { padding: 0 var(--space-4); }
-  section { padding: var(--space-12) 0; }
+  section { padding: var(--space-12) 0 calc(var(--space-12) * 1.15); }
 }
