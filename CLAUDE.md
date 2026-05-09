@@ -118,10 +118,10 @@ A skill `using-superpowers` invoca `brainstorming` no início. **Após brainstor
 
 | Tipo de projeto | Pipeline |
 |---|---|
-| **LP estática / Marketing** | `frontend-design` → build iterativo → `frontend-audit-gate` → `finishing-a-development-branch` |
-| **Componente / Widget** | build direto → `frontend-audit-gate` → `finishing-a-development-branch` |
+| **LP estática / Marketing** | `frontend-design` → build iterativo → `frontend-audit-gate` → `verification-before-completion` → `finishing-a-development-branch` |
+| **Componente / Widget** | build direto → `frontend-audit-gate` → `verification-before-completion` → `finishing-a-development-branch` |
 | **App / Dashboard** | `frontend-design` → `writing-plans` → `subagent-driven-development` (UI tasks vão pro `ui-subagent`) → `frontend-audit-gate` → `verification-before-completion` → `finishing-a-development-branch` |
-| **Refactor / Migration** | `writing-plans` → `subagent-driven-development` → `frontend-audit-gate` (se mexer em UI) → `finishing-a-development-branch` |
+| **Refactor / Migration** | `writing-plans` → `subagent-driven-development` → `frontend-audit-gate` (se mexer em UI) → `verification-before-completion` → `finishing-a-development-branch` |
 
 ### Regras invioláveis
 
@@ -129,6 +129,7 @@ A skill `using-superpowers` invoca `brainstorming` no início. **Após brainstor
 - **O gate deve rodar no modo híbrido** (código + screenshots Playwright). Se não tiver servidor disponível, registrar `code-only` no relatório e sugerir rodar híbrido antes do próximo ship.
 - **Qualquer trabalho visual vai pro `ui-subagent` (Opus 4.7)** — sem exceção. Inclui: construção de componentes HTML/CSS, animações SVG, polish visual, refinamento de layout, aplicação de fixes do audit-gate, qualquer edição em arquivo `.html`, `.css` ou SVG com intenção estética. A sessão principal (Sonnet) coordena e revisa; o Opus executa o visual.
 - **Tasks de UI dentro de `subagent-driven-development` vão pro `ui-subagent`** (não pro subagente genérico). Mantém qualidade visual Opus 4.7 mesmo se a sessão principal for Sonnet.
+- **`verification-before-completion` é obrigatório** antes de `finishing-a-development-branch` em **qualquer projeto frontend** — sem exceção, incluindo LP simples. Exige: abrir no browser, confirmar visualmente que animações rodam, responsivo funciona e nenhum elemento está quebrado. Evidência antes de qualquer claim de "pronto".
 - **Para LP/componente simples, `writing-plans` é opcional** — se a build for iterativa com feedback visual em tempo real, dispensável. Para projetos com state/lógica complexa, é obrigatório.
 
 ### Diagrama visual
@@ -161,8 +162,8 @@ build iterativo                         writing-plans
               ↓ (aplicação: manual OU paralelo via ui-subagent)
         aplicação dos fixes
               ↓
-        verification-before-completion (apps complexos)
-              ↓
+        verification-before-completion (OBRIGATÓRIO — todos os projetos frontend)
+              ↓ abrir no browser, confirmar animações, responsivo, nada quebrado
         finishing-a-development-branch
 
 PARALELO: systematic-debugging (qualquer bug)
