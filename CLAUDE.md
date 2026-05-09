@@ -127,6 +127,7 @@ A skill `using-superpowers` invoca `brainstorming` no início. **Após brainstor
 
 - **`frontend-audit-gate` é gate obrigatório** antes de `finishing-a-development-branch` em **qualquer projeto frontend**. Sem exceção.
 - **O gate deve rodar no modo híbrido** (código + screenshots Playwright). Se não tiver servidor disponível, registrar `code-only` no relatório e sugerir rodar híbrido antes do próximo ship.
+- **Qualquer trabalho visual vai pro `ui-subagent` (Opus 4.7)** — sem exceção. Inclui: construção de componentes HTML/CSS, animações SVG, polish visual, refinamento de layout, aplicação de fixes do audit-gate, qualquer edição em arquivo `.html`, `.css` ou SVG com intenção estética. A sessão principal (Sonnet) coordena e revisa; o Opus executa o visual.
 - **Tasks de UI dentro de `subagent-driven-development` vão pro `ui-subagent`** (não pro subagente genérico). Mantém qualidade visual Opus 4.7 mesmo se a sessão principal for Sonnet.
 - **Para LP/componente simples, `writing-plans` é opcional** — se a build for iterativa com feedback visual em tempo real, dispensável. Para projetos com state/lógica complexa, é obrigatório.
 
