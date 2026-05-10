@@ -121,13 +121,14 @@
 }
 
 .sidebar[data-collapsed="true"] .navLabel {
-  opacity: 0;
-  pointer-events: none;
+  display: none;
 }
 
-/* Center icons quando colapsada — visual mais limpo */
+/* Center icons quando colapsada — visual mais limpo.
+   gap: 0 evita o vão entre icon e (ex-)label depois do display:none. */
 .sidebar[data-collapsed="true"] .navItem {
   justify-content: center;
+  gap: 0;
   padding: var(--space-3) 0;
 }
 
